@@ -2,40 +2,37 @@
 using System.Collections;
 
 public class PlayerController : MonoBehaviour {
-	public float speed = 15.0f;
-	public float health = 250;
+	public float speed;
+	public float health;
 	public float bulletSpeed;
-	public GameObject bullet;
+	public GameObject bulletPrefab;
+	private Rigidbody2D rigidBody;
 	
+	void Start() {
+		this.rigidBody = this.GetComponent<Rigidbody2D>();
+	}
 
 	void Update () {
-		//movement
-		if(Input.GetKey(KeyCode.W)){
-			this.GetComponent<Rigidbody2D>().velocity = (new Vector2(this.GetComponent<Rigidbody2D>().velocity.x,speed*Time.deltaTime));
-		}else if(Input.GetKeyUp(KeyCode.W)){
-			this.GetComponent<Rigidbody2D>().velocity = (new Vector2(this.GetComponent<Rigidbody2D>().velocity.x,0));
-		}
-		if(Input.GetKey(KeyCode.A)){
-			this.GetComponent<Rigidbody2D>().velocity = (new Vector2(-speed*Time.deltaTime,this.GetComponent<Rigidbody2D>().velocity.y));
-		}else if(Input.GetKeyUp(KeyCode.A)){
-			this.GetComponent<Rigidbody2D>().velocity = (new Vector2(0,this.GetComponent<Rigidbody2D>().velocity.y));
-		}
-		if(Input.GetKey(KeyCode.S)){
-			this.GetComponent<Rigidbody2D>().velocity = (new Vector2(this.GetComponent<Rigidbody2D>().velocity.x,-speed*Time.deltaTime));
-		}else if(Input.GetKeyUp(KeyCode.S)){
-			this.GetComponent<Rigidbody2D>().velocity =(new Vector2(this.GetComponent<Rigidbody2D>().velocity.x,0));
-		}
-		if(Input.GetKey(KeyCode.D)){
-			this.GetComponent<Rigidbody2D>().velocity = (new Vector2(speed*Time.deltaTime,this.GetComponent<Rigidbody2D>().velocity.y));
-		}else if(Input.GetKeyUp(KeyCode.D)){
-			this.GetComponent<Rigidbody2D>().velocity = (new Vector2(0,this.GetComponent<Rigidbody2D>().velocity.y));
-		}
-		if (Input.GetMouseButtonDown(0)){
-			Vector2 mousePosInGame = Camera.main.ScreenToWorldPoint(new Vector2(Input.mousePosition.x,Screen.height-Input.mousePosition.y));
-			Vector2 charPos = transform.position;
-			Vector2 direction = mousePosInGame - charPos;
-			GameObject basicShot = Instantiate(bullet,charPos, Quaternion.Euler(0,0,Mathf.Atan2(direction.y, direction.x )*Mathf.Rad2Deg)) as GameObject;
-			basicShot.GetComponent<Rigidbody2D>().velocity = direction*speed;
+		//initial valocity 0
+		Vector2 velocity = Vector2.zero;
+		//arrow keys change horizontal velocity
+		Debug.Log(Vector2.right + ", " + Input.GetAxis("Horizontal")/8000 + ", " + speed + ", " + Time.deltaTime);
+		velocity += Vector2.right*Input.GetAxis("Horizontal")*speed*Time.deltaTime;
+		//arrow keys change vertical velocity
+		velocity += Vector2.up*Input.GetAxis("Vertical")*speed*Time.deltaTime;
+		Debug.Log(velocity);
+		rigidBody.velocity = velocity; //set new velocity
+
+		//left click
+		if (Input.GetMouseButton(0)) {
+			//get mouse XY
+			Vector2 mouseXY = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+			//calculate spawn angle
+			Quaternion angle = Quaternion.FromToRotation(Vector3.right, mouseXY - new Vector2(transform.position.x, transform.position.y));
+			//make new bullet
+			GameObject bullet = Instantiate(bulletPrefab, transform.position, angle) as GameObject;
+			//accelerate bullet
+			bullet.GetComponent<Rigidbody2D>().AddForce(bullet.transform.right * 500f);
 		}
 		
 	}
