@@ -150,8 +150,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 500
   health: 250
-  bulletSpeed: 1
-  bulletPrefab: {fileID: 0}
+  bulletSpeed: 40
+  bulletPrefab: {fileID: 114808, guid: 5f05295feefaad24bafcccec1b058d6e, type: 2}
 --- !u!124 &12461748
 Behaviour:
   m_ObjectHideFlags: 1
