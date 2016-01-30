@@ -16,11 +16,9 @@ public class PlayerController : MonoBehaviour {
 		//initial valocity 0
 		Vector2 velocity = Vector2.zero;
 		//arrow keys change horizontal velocity
-		Debug.Log(Vector2.right + ", " + Input.GetAxis("Horizontal")/8000 + ", " + speed + ", " + Time.deltaTime);
 		velocity += Vector2.right*Input.GetAxis("Horizontal")*speed*Time.deltaTime;
 		//arrow keys change vertical velocity
 		velocity += Vector2.up*Input.GetAxis("Vertical")*speed*Time.deltaTime;
-		Debug.Log(velocity);
 		rigidBody.velocity = velocity; //set new velocity
 
 		//left click

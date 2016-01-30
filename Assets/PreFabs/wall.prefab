@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 415036}
   - 212: {fileID: 21204384}
   - 61: {fileID: 6108316}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}

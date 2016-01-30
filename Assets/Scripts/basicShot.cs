@@ -12,4 +12,11 @@ public class basicShot : MonoBehaviour {
 	public void Hit(){
 		Destroy(gameObject);
 	}
+	
+	void OnTriggerEnter2D(Collider2D collider){
+		Debug.Log("hit");
+		if (collider.gameObject.layer == LayerMask.NameToLayer("Wall")){
+			Destroy(gameObject);
+		}
+	}
 }

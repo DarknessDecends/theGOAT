@@ -10,7 +10,7 @@ GameObject:
   - 4: {fileID: 415410}
   - 212: {fileID: 21236632}
   - 61: {fileID: 6197772}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: FloorBlock
   m_TagString: Untagged
   m_Icon: {fileID: 0}
