@@ -6,10 +6,12 @@ public class PlayerController : MonoBehaviour {
 	public float health;
 	
 	private Rigidbody2D rigidBody;
+	private Animator animator;
 	private List<Weapon> weapons;
 	
 	
 	void Start() {
+		this.animator = GetComponent<Animator>();
 		this.rigidBody = this.GetComponent<Rigidbody2D>();
 
 		weapons = new List<Weapon>();
@@ -32,7 +34,10 @@ public class PlayerController : MonoBehaviour {
 			velocity += Vector2.right;
 		}
 		rigidBody.velocity = velocity.normalized*speed*Time.deltaTime;
-	
+		
+		//play walk animation if moving
+		animator.SetBool("moving", rigidBody.velocity != Vector2.zero);
+
 		//left click
 		if (Input.GetMouseButton(0)) {
 			//get mouse XY

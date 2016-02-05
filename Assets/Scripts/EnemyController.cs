@@ -8,18 +8,21 @@ public class EnemyController : MonoBehaviour {
 	public int movementChangeTime=500;
 	public int detectionRange;
 	public Transform player;
-	
+
+	private bool detected;
 	private int directionchange = 0;
 	private int horizontalMovement;
 	private int verticalMovement;
 	private Rigidbody2D rigidBody;
+	private Animator animator;
 	
 	void Start() {
 		rigidBody = this.GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
 	}
 
 	void Update () {
-		bool detected = false;
+		detected = false;
 		if (Vector3.Distance(player.position, transform.position) <= detectionRange) {
 			Vector2 dir = player.position - transform.position;
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, detectionRange);
@@ -45,6 +48,9 @@ public class EnemyController : MonoBehaviour {
 			//arrow keys change vertical velocity
 			velocity += Vector2.up*-verticalMovement*speed*Time.deltaTime;
 			this.rigidBody.velocity = velocity; //set new velocity
+
+			//play slither animation if moving
+			animator.SetBool("moving", rigidBody.velocity != Vector2.zero);
 		}
 	}
 	
@@ -56,6 +62,8 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	void OnTriggerEnter2D(Collider2D collider){
-		
+		if (detected && collider.transform == player) { //if enemy sees player an is touching him
+			//do stuff
+		}
 	}
 }
