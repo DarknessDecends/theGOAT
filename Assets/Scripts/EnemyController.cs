@@ -14,9 +14,7 @@ public class EnemyController : MonoBehaviour {
 	void Update () {
 		if (directionchange == 0){
 			horizontalMovement=Random.Range(-1,2);
-			Debug.Log(horizontalMovement);
 			verticalMovement=Random.Range(-1,2);
-			Debug.Log(verticalMovement);
 			directionchange=movementChangeTime;
 		}else{
 			directionchange--;
