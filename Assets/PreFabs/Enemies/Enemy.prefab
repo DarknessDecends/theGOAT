@@ -10,8 +10,8 @@ GameObject:
   - 4: {fileID: 481160}
   - 212: {fileID: 21210258}
   - 50: {fileID: 5032530}
-  - 60: {fileID: 6060798}
   - 114: {fileID: 11447532}
+  - 61: {fileID: 6172282}
   m_Layer: 11
   m_Name: Enemy
   m_TagString: Untagged
@@ -26,45 +26,42 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150588}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -.99000001, y: .889999986, z: 0}
-  m_LocalScale: {x: 3, y: 3, z: 1}
+  m_LocalPosition: {x: -0.43980014, y: -0.06453094, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!50 &5032530
 Rigidbody2D:
+  serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150588}
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: .0500000007
+  m_AngularDrag: 0.05
   m_GravityScale: 0
-  m_FixedAngle: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
---- !u!60 &6060798
-PolygonCollider2D:
+  m_Constraints: 4
+--- !u!61 &6172282
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150588}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: -.129999995, y: .115000002}
-      - {x: -.129999995, y: -.0949999988}
-      - {x: -.109999999, y: -.115000002}
-      - {x: .129999995, y: -.115000002}
-      - {x: .143600032, y: -.0659381375}
-      - {x: .0500000007, y: .115000002}
+  serializedVersion: 2
+  m_Size: {x: 0.8125, y: 0.71875}
 --- !u!114 &11447532
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -97,14 +94,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: cffc04219f0636645a4f8b3d6e1a92e4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

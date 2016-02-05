@@ -8,23 +8,30 @@ public class PlayerController : MonoBehaviour {
 	public GameObject bulletPrefab;
 	
 	private Rigidbody2D rigidBody;
-	private List<Weapon> weapons = new List<Weapon>();
+	private List<Weapon> weapons;
 	
 	
 	void Start() {
 		this.rigidBody = this.GetComponent<Rigidbody2D>();
+		weapons = new List<Weapon>();
 		weapons.Add(this.gameObject.GetComponent<Weapon>());
 	}
 
 	void Update () {
-		Debug.Log(weapons[0]);
-		//initial valocity 0
 		Vector2 velocity = Vector2.zero;
-		//arrow keys change horizontal velocity
-		velocity += Vector2.right*Input.GetAxis("Horizontal")*speed*Time.deltaTime;
-		//arrow keys change vertical velocity
-		velocity += Vector2.up*Input.GetAxis("Vertical")*speed*Time.deltaTime;
-		rigidBody.velocity = velocity; //set new velocity
+		if (Input.GetKey("up") || Input.GetKey("w")) {
+			velocity += Vector2.up;
+		}
+		if (Input.GetKey("down") || Input.GetKey("s")) {
+			velocity += Vector2.down;
+		}
+		if (Input.GetKey("left") || Input.GetKey("a")) {
+			velocity += Vector2.left;
+		}
+		if (Input.GetKey("right") || Input.GetKey("d")) {
+			velocity += Vector2.right;
+		}
+		rigidBody.velocity = velocity.normalized*speed*Time.deltaTime;
 	
 		//left click
 		if (Input.GetMouseButton(0)) {
@@ -38,7 +45,7 @@ public class PlayerController : MonoBehaviour {
 				GameObject attack = Instantiate(currentWep.WeaponPrefab, transform.position, angle) as GameObject;
 				if (currentWep.ranged){
 					//accelerate bullet
-					currentWep.GetComponent<Rigidbody2D>().AddForce(attack.transform.right * 500f);
+					attack.GetComponent<Rigidbody2D>().AddForce(attack.transform.right * 500f);
 				}
 			}
 		}

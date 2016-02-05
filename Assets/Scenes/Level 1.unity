@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 29070674}
   - 212: {fileID: 29070675}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ Transform:
   m_GameObject: {fileID: 29070673}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5, y: -0.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 11
@@ -152,7 +152,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 63818709}
   - 212: {fileID: 63818710}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -167,7 +167,7 @@ Transform:
   m_GameObject: {fileID: 63818708}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.51, y: -1.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 34
@@ -201,6 +201,60 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
+--- !u!1001 &85334568
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 956138108}
+    m_Modifications:
+    - target: {fileID: 467472, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: -3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 467472, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 467472, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 467472, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 467472, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 467472, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 467472, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 467472, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 148362, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 467472, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 467472, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1001 &94289402
 Prefab:
   m_ObjectHideFlags: 0
@@ -210,11 +264,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .92892319
+      value: 0.58
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -.553360462
+      value: -0.55336046
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -238,11 +292,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_RootOrder
-      value: 16
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 150588, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_Name
       value: Enemy 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
@@ -256,7 +318,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 125301917}
   - 212: {fileID: 125301916}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -301,7 +363,7 @@ Transform:
   m_GameObject: {fileID: 125301915}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.5, y: 2.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 4
@@ -314,7 +376,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 146114368}
   - 212: {fileID: 146114369}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -329,7 +391,7 @@ Transform:
   m_GameObject: {fileID: 146114367}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.51, y: 0.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 25
@@ -372,7 +434,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 237136847}
   - 212: {fileID: 237136848}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile14
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -387,7 +449,7 @@ Transform:
   m_GameObject: {fileID: 237136846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5, y: -2.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 13
@@ -430,7 +492,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 263170949}
   - 212: {fileID: 263170950}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile17
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -445,7 +507,7 @@ Transform:
   m_GameObject: {fileID: 263170948}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5, y: -2.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 16
@@ -488,7 +550,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 271994733}
   - 212: {fileID: 271994732}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -533,7 +595,7 @@ Transform:
   m_GameObject: {fileID: 271994731}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5, y: 2.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 6
@@ -546,7 +608,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 315908894}
   - 212: {fileID: 315908895}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -561,7 +623,7 @@ Transform:
   m_GameObject: {fileID: 315908893}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.49, y: 0.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 27
@@ -650,7 +712,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 355288052}
   - 212: {fileID: 355288053}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile18
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -665,7 +727,7 @@ Transform:
   m_GameObject: {fileID: 355288051}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.5, y: -2.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 17
@@ -708,7 +770,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 424445230}
   - 212: {fileID: 424445231}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile16
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -723,7 +785,7 @@ Transform:
   m_GameObject: {fileID: 424445229}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.5, y: -2.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 15
@@ -766,7 +828,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 430041735}
   - 212: {fileID: 430041736}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile20
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -781,7 +843,7 @@ Transform:
   m_GameObject: {fileID: 430041734}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.5, y: -1.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 19
@@ -824,7 +886,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 508933569}
   - 212: {fileID: 508933570}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -839,7 +901,7 @@ Transform:
   m_GameObject: {fileID: 508933568}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.51, y: 0.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 24
@@ -882,11 +944,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.439800143
+      value: -0.43980014
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -.0645309389
+      value: -0.06453094
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -910,7 +972,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_RootOrder
-      value: 15
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 150588, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_Name
@@ -928,11 +990,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 475124, guid: 0f929fe237cad3e4a88c3d05e97bd5d2, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .0299999993
+      value: 0.03
       objectReference: {fileID: 0}
     - target: {fileID: 475124, guid: 0f929fe237cad3e4a88c3d05e97bd5d2, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.19000006
+      value: -1.19
       objectReference: {fileID: 0}
     - target: {fileID: 475124, guid: 0f929fe237cad3e4a88c3d05e97bd5d2, type: 2}
       propertyPath: m_LocalPosition.z
@@ -956,13 +1018,22 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 475124, guid: 0f929fe237cad3e4a88c3d05e97bd5d2, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2049498, guid: 0f929fe237cad3e4a88c3d05e97bd5d2, type: 2}
       propertyPath: orthographic
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    - target: {fileID: 475124, guid: 0f929fe237cad3e4a88c3d05e97bd5d2, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 475124, guid: 0f929fe237cad3e4a88c3d05e97bd5d2, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 6114008, guid: 0f929fe237cad3e4a88c3d05e97bd5d2, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 0f929fe237cad3e4a88c3d05e97bd5d2, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &711436716
@@ -974,11 +1045,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.92258322
+      value: -1.9225832
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .522064686
+      value: 0.5220647
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1002,11 +1073,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 150588, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_Name
       value: Enemy 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
@@ -1020,7 +1099,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 791212445}
   - 212: {fileID: 791212446}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1035,7 +1114,7 @@ Transform:
   m_GameObject: {fileID: 791212444}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.49, y: 1.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 23
@@ -1069,64 +1148,10 @@ SpriteRenderer:
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
---- !u!1 &820206819
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 820206821}
-  - 212: {fileID: 820206820}
-  m_Layer: 0
-  m_Name: dummyTile1
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &820206820
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 820206819}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_ReflectionProbeUsage: 0
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 26b9cc16fa4ac8045916efa34e5471de, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
---- !u!4 &820206821
+--- !u!4 &820206821 stripped
 Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 820206819}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.5, y: -0.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 956138108}
-  m_RootOrder: 0
+  m_PrefabParentObject: {fileID: 467472, guid: a7413ae2867b8e545b2927170db6a9ba, type: 2}
+  m_PrefabInternal: {fileID: 85334568}
 --- !u!1001 &917547965
 Prefab:
   m_ObjectHideFlags: 0
@@ -1136,11 +1161,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.889999986
+      value: -0.89
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .939999998
+      value: 0.94
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1164,7 +1189,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_RootOrder
-      value: 17
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
@@ -1178,11 +1211,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.51522481
+      value: -1.5152248
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -.4881832
+      value: -0.4881832
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1206,11 +1239,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 150588, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_Name
       value: Enemy 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
@@ -1224,7 +1265,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 956138108}
   - 68: {fileID: 956138109}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: tilemap
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1306,7 +1347,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 957754581}
   - 212: {fileID: 957754582}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile12
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1321,7 +1362,7 @@ Transform:
   m_GameObject: {fileID: 957754580}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.51, y: -1.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 32
@@ -1364,7 +1405,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 970723668}
   - 212: {fileID: 970723669}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1379,7 +1420,7 @@ Transform:
   m_GameObject: {fileID: 970723667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.49, y: -0.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 31
@@ -1422,11 +1463,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -.0487363338
+      value: -0.048736334
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.61378479
+      value: 1.6137848
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1450,11 +1491,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_RootOrder
-      value: 14
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 150588, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_Name
       value: Enemy 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
@@ -1514,7 +1563,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1051719368}
   - 212: {fileID: 1051719369}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1529,7 +1578,7 @@ Transform:
   m_GameObject: {fileID: 1051719367}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.51, y: 1.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 21
@@ -1572,11 +1621,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -1.66187418
+      value: -1.6618742
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -1.49843132
+      value: -1.4984313
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1600,11 +1649,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 150588, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_Name
       value: Enemy 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
@@ -1618,7 +1675,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1100453260}
   - 212: {fileID: 1100453261}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1633,7 +1690,7 @@ Transform:
   m_GameObject: {fileID: 1100453259}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.51, y: 1.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 20
@@ -1676,7 +1733,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1126388097}
   - 212: {fileID: 1126388098}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1691,7 +1748,7 @@ Transform:
   m_GameObject: {fileID: 1126388096}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.51, y: -0.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 29
@@ -1738,7 +1795,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.61378479
+      value: 1.6137848
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -1762,11 +1819,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 150588, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_Name
       value: Enemy 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
@@ -1780,7 +1845,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1271416957}
   - 212: {fileID: 1271416956}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1825,7 +1890,7 @@ Transform:
   m_GameObject: {fileID: 1271416955}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5, y: 0.499, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 10
@@ -1838,7 +1903,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1272690109}
   - 212: {fileID: 1272690110}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1853,7 +1918,7 @@ Transform:
   m_GameObject: {fileID: 1272690108}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -2.51, y: -0.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 28
@@ -1896,7 +1961,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1349389791}
   - 212: {fileID: 1349389790}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1941,7 +2006,7 @@ Transform:
   m_GameObject: {fileID: 1349389789}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.5, y: 0.499, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 1
@@ -1954,7 +2019,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1363616143}
   - 212: {fileID: 1363616144}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile19
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1969,7 +2034,7 @@ Transform:
   m_GameObject: {fileID: 1363616142}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.5, y: -2.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 18
@@ -2012,7 +2077,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1371763671}
   - 212: {fileID: 1371763672}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2027,7 +2092,7 @@ Transform:
   m_GameObject: {fileID: 1371763670}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.51, y: 0.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 26
@@ -2116,7 +2181,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1419968216}
   - 212: {fileID: 1419968217}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2131,7 +2196,7 @@ Transform:
   m_GameObject: {fileID: 1419968215}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.51, y: -0.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 30
@@ -2174,7 +2239,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1520164931}
   - 212: {fileID: 1520164930}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2219,7 +2284,7 @@ Transform:
   m_GameObject: {fileID: 1520164929}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.5, y: 2.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 5
@@ -2232,11 +2297,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: .488976836
+      value: 0.48897684
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: .766479731
+      value: 0.76647973
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2260,15 +2325,55 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 150588, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
       propertyPath: m_Name
       value: Enemy 2
       objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1607251114 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 108192, guid: 0f929fe237cad3e4a88c3d05e97bd5d2, type: 2}
+  m_PrefabInternal: {fileID: 576869916}
+--- !u!114 &1607251115
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1607251114}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 216f19f64ca6f214c87004e10c19fcb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 100
+  WeaponPrefab: {fileID: 114808, guid: 5f05295feefaad24bafcccec1b058d6e, type: 2}
+  ranged: 1
+--- !u!61 &1607251116
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1607251114}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Size: {x: 0.6875, y: 0.71875}
 --- !u!1 &1627766495
 GameObject:
   m_ObjectHideFlags: 0
@@ -2278,7 +2383,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1627766497}
   - 212: {fileID: 1627766496}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2323,7 +2428,7 @@ Transform:
   m_GameObject: {fileID: 1627766495}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: 2.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 7
@@ -2336,7 +2441,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1642894157}
   - 212: {fileID: 1642894156}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2381,7 +2486,7 @@ Transform:
   m_GameObject: {fileID: 1642894155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.5, y: 2.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 3
@@ -2394,7 +2499,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1698658925}
   - 212: {fileID: 1698658926}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2409,7 +2514,7 @@ Transform:
   m_GameObject: {fileID: 1698658924}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.51, y: 1.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 22
@@ -2452,7 +2557,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1720506582}
   - 212: {fileID: 1720506583}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2467,7 +2572,7 @@ Transform:
   m_GameObject: {fileID: 1720506581}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.49, y: -1.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 35
@@ -2510,7 +2615,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1752077470}
   - 212: {fileID: 1752077471}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2525,7 +2630,7 @@ Transform:
   m_GameObject: {fileID: 1752077469}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -3.5, y: 1.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 2
@@ -2568,7 +2673,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1772560181}
   - 212: {fileID: 1772560180}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2613,7 +2718,7 @@ Transform:
   m_GameObject: {fileID: 1772560179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5, y: 1.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 9
@@ -2626,7 +2731,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1815831327}
   - 212: {fileID: 1815831326}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2671,7 +2776,7 @@ Transform:
   m_GameObject: {fileID: 1815831325}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5, y: 2.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 8
@@ -2684,7 +2789,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1911528668}
   - 212: {fileID: 1911528669}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile15
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2699,7 +2804,7 @@ Transform:
   m_GameObject: {fileID: 1911528667}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.5, y: -2.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 14
@@ -2788,7 +2893,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2091061766}
   - 212: {fileID: 2091061767}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dummyTile13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2803,7 +2908,7 @@ Transform:
   m_GameObject: {fileID: 2091061765}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 1.5, y: -1.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 12
@@ -2846,7 +2951,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 2123182961}
   - 212: {fileID: 2123182962}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: dungeonTile13
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2861,7 +2966,7 @@ Transform:
   m_GameObject: {fileID: 2123182960}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.51, y: -1.5, z: 0}
-  m_LocalScale: {x: 3.1, y: 3.1, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 956138108}
   m_RootOrder: 33
