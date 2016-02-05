@@ -10,7 +10,12 @@ public class EnemyController : MonoBehaviour {
 	private int directionchange = 0;
 	private int horizontalMovement;
 	private int verticalMovement;
+	private Rigidbody2D rigidBody;
 	
+	void Start() {
+		rigidBody = this.GetComponent<Rigidbody2D>();
+	}
+
 	void Update () {
 		if (directionchange == 0){
 			horizontalMovement=Random.Range(-1,2);
@@ -26,20 +31,18 @@ public class EnemyController : MonoBehaviour {
 		velocity += Vector2.right*horizontalMovement*speed*Time.deltaTime;
 		//arrow keys change vertical velocity
 		velocity += Vector2.up*-verticalMovement*speed*Time.deltaTime;
-		this.GetComponent<Rigidbody2D>().velocity = velocity; //set new velocity
+		this.rigidBody.velocity = velocity; //set new velocity
 		
 	}
 	
-	void OnTriggerEnter2D(Collider2D collider){
-		if (collider.gameObject.GetComponent<basicShot>()){
-			basicShot missile = collider.gameObject.GetComponent<basicShot>();
-			if(missile){
-				health -= missile.GetDamage();
-				missile.Hit();
-				if (health <= 0){
-					Destroy(gameObject);
-				}
-			}
+	public void hurt(float damage) {
+		health -= damage;
+		if (health <= 0) {
+			Destroy(gameObject);
 		}
+	}
+
+	void OnTriggerEnter2D(Collider2D collider){
+		
 	}
 }

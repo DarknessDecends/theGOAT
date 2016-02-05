@@ -1507,14 +1507,6 @@ Prefab:
       propertyPath: m_Name
       value: Enemy 5
       objectReference: {fileID: 0}
-    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 481160, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 79563f5afa884b5479f5eac788f961c1, type: 2}
   m_IsPrefabParent: 0
@@ -2218,12 +2210,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1607251114}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 216f19f64ca6f214c87004e10c19fcb2, type: 3}
+  m_Script: {fileID: 11500000, guid: c09f872d3adea1d488cd7b182b0de504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 100
-  WeaponPrefab: {fileID: 114808, guid: 5f05295feefaad24bafcccec1b058d6e, type: 2}
-  ranged: 1
+  cooldown: 1
+  arrowSpeed: 50
+  arrowPrefab: {fileID: 114808, guid: 5f05295feefaad24bafcccec1b058d6e, type: 2}
 --- !u!61 &1607251116
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2235,9 +2228,9 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.016460406, y: 0}
   serializedVersion: 2
-  m_Size: {x: 0.6875, y: 0.71875}
+  m_Size: {x: 0.6545793, y: 0.71875}
 --- !u!1001 &1657435755
 Prefab:
   m_ObjectHideFlags: 0
