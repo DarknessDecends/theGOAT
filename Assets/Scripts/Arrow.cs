@@ -3,7 +3,12 @@ using System.Collections;
 
 public class Arrow : MonoBehaviour {
 	
-	public float damage = 100f;
+	[HideInInspector]
+	public float damage;
+
+	void Update() {
+		//Physics2D.Raycast(transform.position, prevPosition, Vector2.Distance(transform.position, prevPosition), LayerMask.NameToLayer("Wall") | LayerMask.NameToLayer("Enemy"));
+	}
 	
 	void OnTriggerEnter2D(Collider2D collider){
 		if (collider.gameObject.layer == LayerMask.NameToLayer("Wall")){
@@ -15,5 +20,9 @@ public class Arrow : MonoBehaviour {
 				Destroy(gameObject);
 			}
 		}
+	}
+
+	private void collide(Collider2D collider) {
+
 	}
 }

@@ -12,7 +12,6 @@ public class Bow : Weapon {
 	}
 
 	void Update() {
-		Debug.Log(cooldown + ", " + cooldownTimer);
 		if (cooldownTimer > 0) {
 			cooldownTimer -= Time.deltaTime;
 		}
@@ -21,9 +20,10 @@ public class Bow : Weapon {
 	override public void attack(Quaternion angle) {
 		if (cooldownTimer <= 0) {
 			//make new bullet
-			GameObject arrow = Instantiate(arrowPrefab, transform.position, angle) as GameObject;
+			Arrow arrow = (Instantiate(arrowPrefab, transform.position, angle) as GameObject).GetComponent<Arrow>();
+			arrow.damage = this.damage; //set damage
 			//accelerate bullet
-			arrow.GetComponent<Rigidbody2D>().AddForce(arrow.transform.right * 500f);
+			arrow.GetComponent<Rigidbody2D>().AddForce(arrow.transform.right * arrowSpeed, ForceMode2D.Impulse);
 			cooldownTimer = cooldown; //reset cooldownTimer
 		}
 	}
