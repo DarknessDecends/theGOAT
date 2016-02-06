@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour {
 
 		weapons = new List<Weapon>();
 		weapons.Add(GetComponent<Weapon>()); //add Bow
-		weapons.Add(transform.GetChild(2).GetComponent<Weapon>()); //add Bow
+		weapons.Add(transform.GetChild(0).GetComponent<Weapon>()); //add Bow
 	}
 
 	void Update () {

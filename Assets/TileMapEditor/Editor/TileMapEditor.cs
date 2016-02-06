@@ -182,29 +182,35 @@ public class TileMapEditor : Editor {
 
 		GameObject tile = GameObject.Find(map.name + "/Tiles/tile_" + brushID);
 
+		bool newTile = false;
+
+		//create new tile
 		if (tile == null) {
-			tile = new GameObject("tile_"+brushID);
+			newTile = true;
+			tile = PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("tilePrefab")) as GameObject;
+			tile.name = "tile_"+brushID;
 			Undo.RegisterCreatedObjectUndo(tile, "create tile"); //allows undo of tile creation
 			tile.transform.SetParent(map.tiles.transform);
 			tile.transform.position = new Vector3(posX, posY, map.transform.position.z);
-			SpriteRenderer renderer = tile.AddComponent<SpriteRenderer>();
-			renderer.sprite = brush.renderer2D.sprite;
-			if (mapID <= map.solidIndex) { //if tile is solid
+		} else { //tile already created
+			Undo.RegisterCompleteObjectUndo(tile, "edit tile"); //save snapshot for undo
+		}
+
+		//update sprite
+		SpriteRenderer renderer = tile.GetComponent<SpriteRenderer>();
+		renderer.sprite = brush.renderer2D.sprite;
+
+		//add/remove collider
+		BoxCollider2D collider = tile.GetComponent<BoxCollider2D>();
+		if (mapID <= map.solidIndex) { //if tile is solid
+			if (!collider) { //and has no collider
 				tile.AddComponent<BoxCollider2D>();
 			}
-			tile.layer = LayerMask.NameToLayer("Wall");
-		} else {
-			SpriteRenderer renderer = tile.GetComponent<SpriteRenderer>();
-			Undo.RegisterCompleteObjectUndo(tile, "edit tile"); //save snapshot for undo
-			renderer.sprite = brush.renderer2D.sprite; //update sprite
-			BoxCollider2D collider = tile.GetComponent<BoxCollider2D>();
-			if (mapID <= map.solidIndex) {
-				if (!collider) { //add collider
-					tile.AddComponent<BoxCollider2D>();
-				}
-			} else if (collider) { //tile is not solid
-				DestroyImmediate(collider); //remove collider
-			}
+		} else if (collider) { //tile is not solid & has collider
+			DestroyImmediate(collider); //remove collider
+		}
+
+		if (!newTile) {
 			EditorUtility.SetDirty(tile); //record changes for undo
 		}
 	}
