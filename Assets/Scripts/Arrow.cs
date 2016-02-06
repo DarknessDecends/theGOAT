@@ -21,8 +21,4 @@ public class Arrow : MonoBehaviour {
 			}
 		}
 	}
-
-	private void collide(Collider2D collider) {
-
-	}
 }
