@@ -15,8 +15,6 @@ public class PlayerController : MonoBehaviour {
 		this.rigidBody = this.GetComponent<Rigidbody2D>();
 
 		weapons = new List<Weapon>();
-		weapons.Add(GetComponent<Weapon>()); //add Bow
-		weapons.Add(transform.GetChild(0).GetComponent<Weapon>()); //add Bow
 	}
 
 	void Update () {
@@ -39,19 +37,41 @@ public class PlayerController : MonoBehaviour {
 		//play walk animation if moving
 		animator.SetBool("moving", rigidBody.velocity != Vector2.zero);
 
-		//left click
-		if (Input.GetMouseButton(0)) {
-			//get mouse XY
-			Vector2 mouseXY = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-			//calculate angle btwn player & mouse
+        //get mouse XY
+        Vector2 mouseXY = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        //rotate character to face direction of mouse
+        if (mouseXY.x < transform.position.x){
+            transform.rotation = Quaternion.Euler(0, 180, 0);
+        } //end if
+        else if (mouseXY.x > transform.position.x){
+            transform.rotation = Quaternion.Euler(0, 0, 0);
+        } //end else if
+
+        //left click
+        if (Input.GetMouseButton(0)) {	
+            //calculate angle btwn player & mouse
 			Quaternion angle = Quaternion.FromToRotation(Vector3.right, mouseXY - new Vector2(transform.position.x, transform.position.y));
-			for (int i = 0; i < weapons.Count; i++){
-				weapons[i].attack(angle);
-			}
-		}
-		
-	}
-	void OnCollision2D(Collision2D collision){
-		
-	}
-}
+            if (weapons != null) {
+                for (int i = 0; i < weapons.Count; i++) {
+                    weapons[i].attack(angle);
+                } //end for
+            } //end if
+		} //end if
+	} //end update
+
+    void OnTriggerEnter2D(Collider2D collider) {
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Pickups")) {
+            string name = collider.gameObject.name;
+            if (name == "Basic Staff Pickup") {
+                weapons.Add(GetComponent<Weapon>()); //add basic Staff
+                Destroy(collider.gameObject);
+            } //end if
+            if (name == "SwordPickup") {
+               weapons.Add(transform.GetChild(0).GetComponent<Weapon>()); //add sword
+               transform.GetChild(0).gameObject.SetActive(true);
+               Destroy(collider.gameObject);
+            } //end if
+        } //end if
+    } //end onTriggerEnter2D
+} //end Class

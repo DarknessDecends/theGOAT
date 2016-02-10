@@ -7,7 +7,7 @@ public class Arrow : MonoBehaviour {
 	public float damage;
 
 	void Update() {
-		//Physics2D.Raycast(transform.position, prevPosition, Vector2.Distance(transform.position, prevPosition), LayerMask.NameToLayer("Wall") | LayerMask.NameToLayer("Enemy"));
+	
 	}
 	
 	void OnTriggerEnter2D(Collider2D collider){
