@@ -11,4 +11,12 @@ public class LevelManager : MonoBehaviour {
         Application.Quit();
     }
 
+    public void resetLevel() {
+        //resets his health upon restart
+        GameObject.FindObjectOfType<PlayerController>().health = GameObject.FindObjectOfType<PlayerController>().maxHealth;
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        //resets his position to the spawn
+        GameObject.FindObjectOfType<PlayerController>().transform.position = new Vector3(0, 0, -3);
+    }
+
 }

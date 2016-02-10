@@ -3,22 +3,36 @@ using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour {
 	public float speed;
-	public float health;
+	public float maxHealth;
 	
 	private Rigidbody2D rigidBody;
 	private Animator animator;
 	private List<Weapon> weapons;
-	
-	
-	void Start() {
-		this.animator = GetComponent<Animator>();
+    private LevelManager levelManager;
+    private static PlayerController instance;
+    public float health;
+
+    void Awake() {
+        if (instance == null) {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        if (instance != this) {
+            Destroy(gameObject);
+        }
+    }
+
+    void Start() {
+        health = maxHealth;
+        this.animator = GetComponent<Animator>();
 		this.rigidBody = this.GetComponent<Rigidbody2D>();
+        levelManager = GameObject.FindObjectOfType<LevelManager>();
 
 		weapons = new List<Weapon>();
 	}
 
-	void Update () {
-		//rrowkeys change velocity
+    void Update () {
+		//arrowkeys change velocity
 		Vector2 velocity = Vector2.zero;
 		if (Input.GetKey("up") || Input.GetKey("w")) {
 			velocity += Vector2.up;
@@ -59,6 +73,13 @@ public class PlayerController : MonoBehaviour {
             } //end if
 		} //end if
 	} //end update
+
+    public void hurt(float damage) {
+        health -= damage;
+        if (health <= 0) {
+            levelManager.resetLevel();
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D collider) {
         if (collider.gameObject.layer == LayerMask.NameToLayer("Pickups")) {

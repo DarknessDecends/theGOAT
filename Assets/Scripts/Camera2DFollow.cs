@@ -4,6 +4,18 @@ using UnityEngine;
 	public class Camera2DFollow : MonoBehaviour {
 	public Transform target;
 
+    private static Camera2DFollow instance;
+
+    void Awake() {
+        if (instance == null) {
+            instance = this;
+            DontDestroyOnLoad(transform.gameObject);
+        }
+        if (instance != this) {
+            Destroy(gameObject);
+        }
+    }
+
 	// Use this for initialization
 	private void Start() {
 	}
