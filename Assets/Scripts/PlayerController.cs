@@ -4,13 +4,14 @@ using System.Collections.Generic;
 public class PlayerController : MonoBehaviour {
 	public float speed;
 	public float maxHealth;
-	
-	private Rigidbody2D rigidBody;
-	private Animator animator;
-	private List<Weapon> weapons;
+    public List<Weapon> weapons;
+    public float health;
+
+    private Rigidbody2D rigidBody;
+    private Animator animator;
     private LevelManager levelManager;
     private static PlayerController instance;
-    public float health;
+
 
     void Awake() {
         if (instance == null) {
@@ -85,14 +86,19 @@ public class PlayerController : MonoBehaviour {
         if (collider.gameObject.layer == LayerMask.NameToLayer("Pickups")) {
             string name = collider.gameObject.name;
             if (name == "Basic Staff Pickup") {
-                weapons.Add(GetComponent<Weapon>()); //add basic Staff
+                Weapon newWep = GetComponent<Weapon>();
+                if (!weapons.Contains(newWep)) {
+                    weapons.Add(newWep);     //add basic Staff
+                } else {
+                    GetComponent<Weapon>().cooldown /= 2;
+                }
                 Destroy(collider.gameObject);
             } //end if
             if (name == "SwordPickup") {
                weapons.Add(transform.GetChild(0).GetComponent<Weapon>()); //add sword
                transform.GetChild(0).gameObject.SetActive(true);
                Destroy(collider.gameObject);
-            } //end if
+           } //end if
         } //end if
     } //end onTriggerEnter2D
 } //end Class

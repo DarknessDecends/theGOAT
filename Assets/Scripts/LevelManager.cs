@@ -14,9 +14,15 @@ public class LevelManager : MonoBehaviour {
     public void resetLevel() {
         //resets his health upon restart
         GameObject.FindObjectOfType<PlayerController>().health = GameObject.FindObjectOfType<PlayerController>().maxHealth;
+
+        //Reloads the Scene
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        
         //resets his position to the spawn
         GameObject.FindObjectOfType<PlayerController>().transform.position = new Vector3(0, 0, -3);
+
+        //Sets the timer back to full
+        GameObject.FindObjectOfType<Clock>().time = GameObject.FindObjectOfType<Clock>().totalTime*60f;
     }
 
 }
