@@ -1,29 +1,30 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class TileMap : MonoBehaviour {
 
 	public Vector2 mapSize = new Vector2(20, 10); //map size in tiles
 	public Vector2 gridSize = new Vector2(); //map size in world units
 
-	public Texture2D tileSheet; //this is the tileset from the inspector
-	public Object[] spriteReferences;
+	[SerializeField] //needed to display in editor
+	public List<Tile> tileSet; //array of all tiles in tileSet
+	public Tile[,] tileArray; //a 2D array of all tiles in tilemap
 
 	public Vector2 tileSize = new Vector2();
-	public int pixelsToUnits = 100;
-	public int tileID = 0;
+	public int pixelsToUnits = 32;
+	public int tileID = 0; //tile currently selected inspector
 
 	public new SpriteRenderer renderer;
 
 	public Sprite currentTileBrush {
-		get { return spriteReferences[tileID] as Sprite; }
+		get { return tileSet[tileID].sprite; }
 	}
 
 	//draws grid once a frame in inspector
 	void OnDrawGizmosSelected() {
 		var pos = transform.position;
 
-		if (tileSheet != null) {
+		if (tileSet != null) {
 			Gizmos.color = Color.gray;
 			var row = 0;
 			var maxColumns = mapSize.x;
@@ -54,7 +55,7 @@ public class TileMap : MonoBehaviour {
 	}
 
 	public void Create() {
-		if (tileSheet != null) {
+		if (tileSet != null) {
 			// (number of tiles)*(size of each tile)
 			int pixelWidth = (int)(mapSize.x*tileSize.x);
 			int pixelHeight = (int)(mapSize.y*tileSize.y);
@@ -69,16 +70,6 @@ public class TileMap : MonoBehaviour {
 			//create new renderer or recreate old texture
 			if (renderer == null) {
 				renderer = this.gameObject.AddComponent<SpriteRenderer>(); //create the new renderer				
-			} else { //keep pixels of the old texture
-				Texture2D oldTexture = renderer.sprite.texture;
-
-				int width = Mathf.Clamp(oldTexture.width, 0, texture.width);
-				int height = Mathf.Clamp(oldTexture.height, 0, texture.height);
-
-				Color[] colors = oldTexture.GetPixels(0, 0, width, height);
-
-				texture.SetPixels(0, 0, width, height, colors);
-				texture.Apply();
 			}
 
 			//create the new tilemap sprite
@@ -87,6 +78,8 @@ public class TileMap : MonoBehaviour {
 			sprite.name = "map";
 
 			renderer.sprite = sprite;
+
+			texture.SetPixels(new Color[] { Color.red, Color.red, Color.red, Color.red, Color.red, Color.red });
 		}
 	}
 

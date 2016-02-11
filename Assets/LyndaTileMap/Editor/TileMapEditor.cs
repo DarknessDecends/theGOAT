@@ -11,56 +11,74 @@ public class TileMapEditor : Editor {
 
 	TileBrush brush; //tooltip that appears in the 
 
+	//variables related to mouse position
 	Vector3 mouseHitPos;
-	bool mouseOnMap{
-		get { return mouseHitPos.x > 0 && mouseHitPos.x < map.gridSize.x && mouseHitPos.y < 0 && mouseHitPos.y > -map.gridSize.y;}
+	bool mouseOnMap {
+		get { return mouseHitPos.x > 0 && mouseHitPos.x < map.gridSize.x && mouseHitPos.y < 0 && mouseHitPos.y > -map.gridSize.y; }
 	}
 
 	//draws the following elements in the inspector each frame
 	public override void OnInspectorGUI() {
+		serializedObject.Update(); //keep serialized version of map object up to date
+
 		var oldSize = map.mapSize;
 		var newSize = EditorGUILayout.Vector2Field("Map Size:", map.mapSize);
-		if (newSize.x < oldSize.x || newSize.y < oldSize.y) {
-			//this is broken - popup prevents user fro entering two digits
-			if (EditorUtility.DisplayDialog("reducing map size will cut off extra tiles", "Are you sure?", "resize", "Do not resize")) {
-				map.mapSize = newSize;
-				UpdateCalculations();
-				map.Create();
+
+		if (map.mapSize != oldSize) {
+			if (newSize.x < oldSize.x || newSize.y < oldSize.y) {
+				//Undo.RecordObject(map.tileArray, "resize tilemap");
 			}
-		} else if (map.mapSize != oldSize) {
+			//tileArray.resize()
+			map.mapSize = newSize;
 			UpdateCalculations();
 			map.Create();
 		}
 
-		var oldTexture = map.tileSheet;
-		map.tileSheet = (Texture2D)EditorGUILayout.ObjectField("Texture2D:", map.tileSheet, typeof(Texture2D), false);
+		Debug.Log(map.tileSet.Count);
 
-		if (oldTexture != map.tileSheet) {
-			UpdateCalculations();
-			map.tileID = 1;
-			CreateBrush();
-			map.Create();
-		}
-
-		if (map.tileSheet == null) {
-			EditorGUILayout.HelpBox ("You have not selected a texture 2D yet.", MessageType.Warning);
+		//keep an empty sprite on the end as a buffer
+		if (map.tileSet.Count <= 0) { //if tileSet is empty
+			map.tileSet.Add(new Tile());
 		} else {
-			EditorGUILayout.LabelField("Tile Size:", map.tileSize.x+"x"+map.tileSize.y);
-			EditorGUILayout.LabelField("Grid Size In Units:", map.gridSize.x+"x"+map.gridSize.y);
-			EditorGUILayout.LabelField("Pixels To Units:", map.pixelsToUnits.ToString());
-
-			brush.setSprite(map.currentTileBrush);
-
-			if(GUILayout.Button("Clear Tiles")){
-				if(EditorUtility.DisplayDialog("Clear map's tiles?", "Are you sure?", "Clear", "Do not clear")){
-					ClearMap();
-				}
+			Tile lastElem = map.tileSet[map.tileSet.Count-1]; //index of last element
+			if (lastElem.sprite != null) { //if last element has a sprite
+				map.tileSet.Add(new Tile()); //create another element
 			}
 		}
+
+		SerializedProperty tileSet = serializedObject.FindProperty("tileSet");
+		for (int i = 0; i < tileSet.arraySize; i++) {
+
+			
+			Editor editor = null;
+			var myAsset = tileSet.GetArrayElementAtIndex(i);
+			CreateCachedEditor(myAsset.objectReferenceValue, null, ref editor);
+			editor.OnInspectorGUI();
+			
+
+
+			EditorGUILayout.PropertyField(tileSet.GetArrayElementAtIndex(i), true);
+		}
+
+		EditorGUILayout.LabelField("Tile Size:", map.tileSize.x+"x"+map.tileSize.y);
+		EditorGUILayout.LabelField("Grid Size In Units:", map.gridSize.x+"x"+map.gridSize.y);
+		EditorGUILayout.LabelField("Pixels To Units:", map.pixelsToUnits.ToString());
+
+		if (brush != null) {
+			brush.setSprite(map.currentTileBrush);
+		}
+
+		if (GUILayout.Button("Clear Tiles")) {
+			if (EditorUtility.DisplayDialog("Clear map's tiles?", "Are you sure?", "Clear", "Do not clear")) {
+				ClearMap();
+			}
+		}
+
+		serializedObject.ApplyModifiedProperties(); //apply changes (allows undo)
 	}
 
 	//called every time the inspector gains focus
-	void OnEnable(){
+	void OnEnable() {
 		map = target as TileMap;
 		Tools.current = Tool.View;
 
@@ -69,20 +87,20 @@ public class TileMapEditor : Editor {
 			map.Create();
 		}
 
-		if (map.tileSheet != null) {
-			UpdateCalculations();
+		UpdateCalculations();
+		//ReDraw();
 
-			//create brush if it doesn't already exist
-			if (map.transform.childCount == 0) {
-				CreateBrush();
-			} else { //brush exists
-				brush = map.transform.GetChild(0).GetComponent<TileBrush>();
-			}
+		//create brush if it doesn't already exist
+		if (map.transform.childCount == 0) {
+			CreateBrush();
+		} else { //brush exists
+			brush = map.transform.GetChild(0).GetComponent<TileBrush>();
 		}
+		//}
 	}
 
 	//called when tilemap loses focus in the heirarchy
-	void OnDisable(){
+	void OnDisable() {
 		//if map has not been destroyed
 		if (map != null && map.transform.childCount > 0) {
 			DestroyImmediate(map.transform.GetChild(0).gameObject);
@@ -90,37 +108,47 @@ public class TileMapEditor : Editor {
 	}
 
 	//called every frame when sceneview is selected
-	void OnSceneGUI(){
+	void OnSceneGUI() {
 		if (brush != null) {
 			UpdateHitPosition();
 			brush.Move(mouseHitPos, mouseOnMap);
 
-			if(map.tileSheet != null && mouseOnMap){
+			if (map.tileSet != null && mouseOnMap) {
 				Event current = Event.current;
-				if(current.shift){
+				if (current.shift) {
 					Draw();
-				}else if(current.alt){
+				} else if (current.alt) {
 					RemoveTile();
 				}
 			}
 		}
 	}
 
-	
 
-	void UpdateCalculations(){
+
+	void UpdateCalculations() {
+		/*
 		//http://answers.unity3d.com/questions/14246/editor-class-texture-importer-apply-import-setting.html
+
+		GameObject[] tilePrefabs = Resources.LoadAll<GameObject>("");//get all tile prefabs in Resources
+
+		Tile[] tiles = tilePrefabs.Select(x => x.GetComponent<Tile>()).ToArray(); //convert list of gameobjects to list of Tiles
+
+		map.tileSet = tiles.Select(x => x.sprite).ToArray(); //convert list of Tiles to list of Sprites
+
+		
 		var path = AssetDatabase.GetAssetPath(map.tileSheet); //get our tilesets filepath (including itself)
 		TextureImporter importer = (TextureImporter)AssetImporter.GetAtPath(path); //create a texture importer for this asset
 		importer.textureType = TextureImporterType.Advanced; //allows us to set isReadable to true
 		importer.isReadable = true; //allows us to read pixels from this texture
 		AssetDatabase.ImportAsset(path, ImportAssetOptions.ForceUpdate);
-		map.spriteReferences = AssetDatabase.LoadAllAssetsAtPath(importer.assetPath); //loads tiles as they are sliced in the unity editor
+		map.tileSet = AssetDatabase.LoadAllAssetsAtPath(importer.assetPath); //loads tiles as they are sliced in the unity editor
+		*/
 
-		var sprite = (Sprite)map.spriteReferences[1];
+		var sprite = map.tileSet[0].sprite;
 		var width = sprite.textureRect.width;
 		var height = sprite.textureRect.height;
-		
+
 		map.tileSize = new Vector2(width, height);
 		map.pixelsToUnits = (int)(sprite.rect.width / sprite.bounds.size.x);
 		map.gridSize = new Vector2((width / map.pixelsToUnits) * map.mapSize.x, (height/map.pixelsToUnits) * map.mapSize.y);
@@ -128,26 +156,24 @@ public class TileMapEditor : Editor {
 
 	void CreateBrush() {
 		if (map.currentTileBrush != null) {
-			GameObject brushObj = new GameObject("brush");
-			brushObj.transform.SetParent(map.transform);
-			brush = TileBrush.Create(brushObj);
+			brush = TileBrush.CreateChildOf(map.transform);
 		}
 	}
 
 	//called every frame by onSceneGUI
 	void UpdateHitPosition() {
-		var p = new Plane(map.transform.TransformDirection (Vector3.forward), Vector3.zero);
+		var p = new Plane(map.transform.TransformDirection(Vector3.forward), Vector3.zero);
 		var ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
 		var hit = Vector3.zero;
 		var dist = 0f;
 
-		if (p.Raycast (ray, out dist))
+		if (p.Raycast(ray, out dist))
 			hit = ray.origin + ray.direction.normalized * dist;
 
-		mouseHitPos = map.transform.InverseTransformPoint (hit);
+		mouseHitPos = map.transform.InverseTransformPoint(hit);
 	}
 
-	void Draw(){
+	void Draw() {
 		SetTile((int)brush.tileXY.x, (int)brush.tileXY.y, brush.renderer.sprite);
 	}
 
@@ -157,10 +183,15 @@ public class TileMapEditor : Editor {
 		var colors = sprite.texture.GetPixels((int)rect.x, (int)rect.y, (int)rect.width, (int)rect.height);
 		SetTile(x, y, colors);
 	}
+	//this overload paints a solid colour
+	void SetTile(int x, int y, Color color) {
+		var colors = Enumerable.Repeat(Color.clear, (int)(map.tileSize.x*map.tileSize.y)).ToArray(); //create array of same colour
+		SetTile((int)brush.tileXY.x, (int)brush.tileXY.y, colors);
+	}
 	//Paint a tile with an array of pixels
 	void SetTile(int x, int y, Color[] pixels) {
-		if (map.tileSheet == null) {
-			Debug.LogError("TileSheet has not been assigned in the inspector");
+		if (map.tileSet == null) {
+			Debug.LogError("there was an error loading tiles prefabs");
 			return;
 		}
 
@@ -180,12 +211,12 @@ public class TileMapEditor : Editor {
 		mapTex.Apply();
 	}
 
-	void RemoveTile(){
-		var colors = Enumerable.Repeat(Color.clear, (int)(map.tileSize.x*map.tileSize.y)).ToArray(); //create array of same colour
-		SetTile((int)brush.tileXY.x, (int)brush.tileXY.y, colors); //paint tile with nothing
+	void RemoveTile() {
+		//paint tile with nothing
 	}
 
-	void ClearMap(){
+	void ClearMap() {
 		DestroyImmediate(map.renderer);
+		map.Create(); //this is untested
 	}
 }

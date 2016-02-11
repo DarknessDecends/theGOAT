@@ -10,13 +10,17 @@ public class TileBrush : MonoBehaviour {
 
 	private TileMap map;
 
-	//create a TileBrush out of a passed in GameObject
-	public static TileBrush Create(GameObject brushObj) {
+	//create brush and attach to object passed in
+	public static TileBrush CreateChildOf(Transform parent) {
+		GameObject brushObj = new GameObject("brush");
+
+		//we are assuming TileMap editor passed in map
+		brushObj.transform.SetParent(parent);
+
 		//create the TileBrush to be returned
 		TileBrush brush = brushObj.AddComponent<TileBrush>();
 
-		//we are assuming brushObj's parent has already been set to map
-		brush.map = brushObj.transform.parent.GetComponent<TileMap>();
+		brush.map = brushObj.transform.parent.GetComponent<TileMap>(); //get a reference to map
 
 		brush.renderer = brushObj.AddComponent<SpriteRenderer>();
 		brush.renderer.sortingOrder = 1000;
