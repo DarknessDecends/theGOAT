@@ -26,10 +26,11 @@ public class TilePickerWindow : EditorWindow {
 	}
 
 	void OnGUI() {
-		if (Selection.activeObject == null)
+		if (Selection.activeObject as GameObject == null)
 			return;
 
 		var selection = (Selection.activeObject as GameObject).GetComponent<TileMap>();
+
 
 		if (selection != null) {
 			var texture2D = selection.texture2D;
@@ -63,8 +64,8 @@ public class TilePickerWindow : EditorWindow {
 				var cEvent = Event.current;
 				Vector2 mousePos = new Vector2(cEvent.mousePosition.x, cEvent.mousePosition.y);
 				if (cEvent.type == EventType.mouseDown && cEvent.button == 0) {
-					currentSelection.x = Mathf.Floor((mousePos.x + scrollPosition.x) / tile.x);
-					currentSelection.y = Mathf.Floor((mousePos.y + scrollPosition.y) / tile.y);
+					currentSelection.x = Mathf.Floor((mousePos.x - offset.x) / tile.x);
+					currentSelection.y = Mathf.Floor((mousePos.y - offset.y) / tile.y);
 
 					if (currentSelection.x > grid.x -1)
 						currentSelection.x = grid.x -1;
