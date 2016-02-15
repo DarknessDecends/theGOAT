@@ -25,14 +25,22 @@ public class TilePickerWindow : EditorWindow {
 		window.titleContent = title;
 	}
 
-	void OnGUI() {
-		if (Selection.activeObject as GameObject == null)
+	void OnSelectionChange() {
+		var activeObject = Selection.activeObject as GameObject;
+		if (activeObject == null)
 			return;
 
-		var selection = (Selection.activeObject as GameObject).GetComponent<TileMap>();
+		if (activeObject.GetComponent<TileMap>() != null)
+			Repaint();
+	}
 
+	void OnGUI() {
+		var activeObject = Selection.activeObject as GameObject;
+		if (activeObject == null || activeObject.GetComponent<TileMap>() == null) {
+			EditorGUILayout.HelpBox("Please click on an existing tilemap in the Hierarchy,\nor select GameObject->TileMap for a new tile map.", MessageType.Info);
+		} else {
+			var selection = activeObject.GetComponent<TileMap>();
 
-		if (selection != null) {
 			var texture2D = selection.texture2D;
 			if (texture2D != null) {
 

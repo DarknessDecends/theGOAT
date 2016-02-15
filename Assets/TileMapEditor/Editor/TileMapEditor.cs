@@ -138,7 +138,6 @@ public class TileMapEditor : Editor {
 	}
 
 	void UpdateHitPosition() {
-
 		var p = new Plane(map.transform.TransformDirection(Vector3.forward), Vector3.zero);
 		var ray = HandleUtility.GUIPointToWorldRay(Event.current.mousePosition);
 		var hit = Vector3.zero;
@@ -204,15 +203,20 @@ public class TileMapEditor : Editor {
 		BoxCollider2D collider = tile.GetComponent<BoxCollider2D>();
 		if (mapID <= map.solidIndex) { //if tile is solid
 			if (!collider) { //and has no collider
-				tile.AddComponent<BoxCollider2D>();
+				collider = tile.AddComponent<BoxCollider2D>();
+				Undo.RegisterCreatedObjectUndo(collider, "edit tile"); //allows undo of tile creation
+				tile.tag = "Solid";
+				CreateColliders();
 			}
 		} else if (collider) { //tile is not solid & has collider
-			DestroyImmediate(collider); //remove collider
+			Undo.DestroyObjectImmediate(collider); //remove collider
+			tile.tag = "Untagged";
 		}
 
 		if (!newTile) {
 			EditorUtility.SetDirty(tile); //record changes for undo
 		}
+		
 	}
 
 	void RemoveTile() {
@@ -231,5 +235,109 @@ public class TileMapEditor : Editor {
 			DestroyImmediate(t.gameObject);
 			i--;
 		}
+	}
+
+	void CreateColliders() {
+		GameObject.FindGameObjectsWithTag("Solid");
+		/*ALGORITHM OF YOUR HEART, ALGORITHM OF THE BEAT
+		._._._.
+		!_!_!_!
+		!_!_!_!
+		!_!_!_!
+
+		123
+		4X6
+		789
+		RULE 1: START AT THE FIRST X AT CORNER 1.
+		IF 4 IS UNOCCUPIED:
+			MOVE TO CORNER 7
+			IF 8 IS UNOCCUPIED:
+				MOVE TO CORNER 9.
+				IF 6 IS UNOCCUPIED:
+					MOVE TO CORNER 3
+					IF 2 IS UNOCCUPIED:
+						GIVE THIS THING A BOX COLLIDER AND REPEAT RULE 1 ON THE NEXT X
+					ELSE: start drawing clockwise
+				ELSE: start drawing clockwise	
+			ELSE: start drawing clockwise
+		ELSE:
+			start drawing clockwise
+
+		StartDrawingClockwise:
+			create a point at current position
+			if 
+		
+		MUST ALSO CHECK FOR EDGE CASES:
+		2
+		X and 4X6
+		8
+
+
+		123
+		4X
+		78
+		RULE 2: 
+		RULE 2: IF positions 2,4,6,8 are empty, make a new path 1,3,9,7
+		RULE 2: if !RULE 1, GENERATE POINTS CLOCWISE EXCEPT THE LAST ONE 
+		RULE 3:
+		XXXX  X XX XXX XX X XXX X
+		XX XX X X XX X X XX X X
+		X  X X   X  X  X   X  X X
+		X   X  X    X   X     X X
+		XXXX XX XX XX XXX XXXXX
+		
+		Starting at X[4,1], where X[1..3,1] have been marked:
+		create points 1,3. Recurse on X8.
+		X8:
+			
+				
+
+		CASE:
+			
+			4X6
+			
+			
+		CASE:
+			123
+			4X6
+			789
+			continue;
+		CASE:
+			 23
+			4X6
+			789
+			continue;
+		CASE:
+			  3
+			4X6
+			789
+			create a point at 1
+		CASE:
+			
+			4X6
+			789
+			create a point at 1
+		CASE:
+			
+			 X6
+			789
+			create points at 7, 1
+		CASE:
+			
+			 X6
+			7 9
+			create points at 9,7,1
+		CASE:
+			  3
+			 X 
+			7  
+			create new path 1,3,9,7
+
+		case: tile has no adjacent tiles:
+			create a new path at the four corners of the tile
+		case: tile has 3 adjacent tiles:
+			if corner 1 is occupied:
+				place a point at corner
+		*/
 	}
 }
