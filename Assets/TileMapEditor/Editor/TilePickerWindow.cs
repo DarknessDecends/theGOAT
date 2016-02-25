@@ -48,13 +48,14 @@ public class TilePickerWindow : EditorWindow {
 				var newScale = ((int)scale) + 1;
 				var newTextureSize = new Vector2(texture2D.width, texture2D.height) * newScale;
 				var offset = new Vector2(10, 25);
+				var spacing = selection.offset; //space between tileSheet tiles
 
 				var viewPort = new Rect(0, 0, position.width-5, position.height-5);
 				var contentSize = new Rect(0, 0, newTextureSize.x + offset.x, newTextureSize.y + offset.y);
 				scrollPosition = GUI.BeginScrollView(viewPort, scrollPosition, contentSize);
 				GUI.DrawTexture(new Rect(offset.x, offset.y, newTextureSize.x, newTextureSize.y), texture2D);
 
-				var tile = selection.tileSize * newScale;
+				var tile = new Vector2(selection.tileSize.x+spacing, selection.tileSize.y+spacing) * newScale;
 				var grid = new Vector2(newTextureSize.x / tile.x, newTextureSize.y / tile.y);
 
 				var selectionPos = new Vector2(tile.x * currentSelection.x + offset.x,

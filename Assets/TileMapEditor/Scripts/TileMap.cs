@@ -10,8 +10,9 @@ public class TileMap : MonoBehaviour {
 	public Object[] spriteReferences;
 	public Vector2 gridSize = new Vector2();
 	public int pixelsToUnits = 100;
+	public int offset = 0;
 	public int tileID = 0;
-	public GameObject tiles;
+	public TileManager tileManager;
 	public TileBrush brush;
 
 	public Sprite currentTileBrush {

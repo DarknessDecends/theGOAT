@@ -20,7 +20,7 @@ public class TileMapEditor : Editor {
 		if (map.mapSize != oldSize) {
 			UpdateCalculations();
 		}
-		
+
 		var oldTexture = map.texture2D;
 		map.texture2D = (Texture2D)EditorGUILayout.ObjectField("Texture2D:", map.texture2D, typeof(Texture2D), false);
 
@@ -54,11 +54,11 @@ public class TileMapEditor : Editor {
 		Tools.current = Tool.View;
 
 		//create new map
-		if (map.tiles == null) {
+		if (map.tileManager == null) {
 			var go = new GameObject("Tiles");
 			go.transform.SetParent(map.transform);
 			go.transform.position = Vector3.zero;
-			map.tiles = go;
+			map.tileManager = go.AddComponent<TileManager>();
 		}
 
 		//create new brush
@@ -74,7 +74,7 @@ public class TileMapEditor : Editor {
 
 				RefreshBrush();
 			}
-		//re-enable brush
+			//re-enable brush
 		} else if (!brush.isActiveAndEnabled) {
 			brush.gameObject.SetActive(true);
 
@@ -120,7 +120,8 @@ public class TileMapEditor : Editor {
 		map.tileSize = new Vector2(width, height);
 		map.pixelsToUnits = (int)(sprite.rect.width / sprite.bounds.size.x);
 		map.gridSize = new Vector2((width / map.pixelsToUnits) * map.mapSize.x, (height/map.pixelsToUnits) * map.mapSize.y);
-
+		map.offset = (int)(((Sprite)map.spriteReferences[2]).rect.x - sprite.rect.xMax);
+		Debug.Log(map.offset);
 	}
 
 	void RefreshBrush() {
@@ -189,7 +190,7 @@ public class TileMapEditor : Editor {
 			tile = PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("tilePrefab")) as GameObject;
 			tile.name = "tile_"+brushID;
 			Undo.RegisterCreatedObjectUndo(tile, "create tile"); //allows undo of tile creation
-			tile.transform.SetParent(map.tiles.transform);
+			tile.transform.SetParent(map.tileManager.transform);
 			tile.transform.position = new Vector3(posX, posY, map.transform.position.z);
 		} else { //tile already created
 			Undo.RegisterCompleteObjectUndo(tile, "edit tile"); //save snapshot for undo
@@ -199,24 +200,21 @@ public class TileMapEditor : Editor {
 		SpriteRenderer renderer = tile.GetComponent<SpriteRenderer>();
 		renderer.sprite = brush.renderer2D.sprite;
 
-		//add/remove collider
-		BoxCollider2D collider = tile.GetComponent<BoxCollider2D>();
+		//redo colliders if solid tiles have changed
 		if (mapID <= map.solidIndex) { //if tile is solid
-			if (!collider) { //and has no collider
-				collider = tile.AddComponent<BoxCollider2D>();
-				Undo.RegisterCreatedObjectUndo(collider, "edit tile"); //allows undo of tile creation
+			if (tile.tag != "Solid") { //and has no collider
 				tile.tag = "Solid";
-				CreateColliders();
+				map.tileManager.CreateColliders(map.mapSize);
 			}
-		} else if (collider) { //tile is not solid & has collider
-			Undo.DestroyObjectImmediate(collider); //remove collider
+		} else if (tile.tag == "Solid") { //&& tile is not solid
 			tile.tag = "Untagged";
+			map.tileManager.CreateColliders(map.mapSize);
 		}
 
 		if (!newTile) {
 			EditorUtility.SetDirty(tile); //record changes for undo
 		}
-		
+
 	}
 
 	void RemoveTile() {
@@ -227,117 +225,16 @@ public class TileMapEditor : Editor {
 		if (tile != null) {
 			Undo.DestroyObjectImmediate(tile);
 		}
+
+		map.tileManager.CreateColliders(map.mapSize);
 	}
 
 	void ClearMap() {
-		for (var i = 0; i < map.tiles.transform.childCount; i++) {
-			Transform t = map.tiles.transform.GetChild(i);
+		for (var i = 0; i < map.tileManager.transform.childCount; i++) {
+			Transform t = map.tileManager.transform.GetChild(i);
 			DestroyImmediate(t.gameObject);
 			i--;
 		}
-	}
-
-	void CreateColliders() {
-		GameObject.FindGameObjectsWithTag("Solid");
-		/*ALGORITHM OF YOUR HEART, ALGORITHM OF THE BEAT
-		._._._.
-		!_!_!_!
-		!_!_!_!
-		!_!_!_!
-
-		123
-		4X6
-		789
-		RULE 1: START AT THE FIRST X AT CORNER 1.
-		IF 4 IS UNOCCUPIED:
-			MOVE TO CORNER 7
-			IF 8 IS UNOCCUPIED:
-				MOVE TO CORNER 9.
-				IF 6 IS UNOCCUPIED:
-					MOVE TO CORNER 3
-					IF 2 IS UNOCCUPIED:
-						GIVE THIS THING A BOX COLLIDER AND REPEAT RULE 1 ON THE NEXT X
-					ELSE: start drawing clockwise
-				ELSE: start drawing clockwise	
-			ELSE: start drawing clockwise
-		ELSE:
-			start drawing clockwise
-
-		StartDrawingClockwise:
-			create a point at current position
-			if 
-		
-		MUST ALSO CHECK FOR EDGE CASES:
-		2
-		X and 4X6
-		8
-
-
-		123
-		4X
-		78
-		RULE 2: 
-		RULE 2: IF positions 2,4,6,8 are empty, make a new path 1,3,9,7
-		RULE 2: if !RULE 1, GENERATE POINTS CLOCWISE EXCEPT THE LAST ONE 
-		RULE 3:
-		XXXX  X XX XXX XX X XXX X
-		XX XX X X XX X X XX X X
-		X  X X   X  X  X   X  X X
-		X   X  X    X   X     X X
-		XXXX XX XX XX XXX XXXXX
-		
-		Starting at X[4,1], where X[1..3,1] have been marked:
-		create points 1,3. Recurse on X8.
-		X8:
-			
-				
-
-		CASE:
-			
-			4X6
-			
-			
-		CASE:
-			123
-			4X6
-			789
-			continue;
-		CASE:
-			 23
-			4X6
-			789
-			continue;
-		CASE:
-			  3
-			4X6
-			789
-			create a point at 1
-		CASE:
-			
-			4X6
-			789
-			create a point at 1
-		CASE:
-			
-			 X6
-			789
-			create points at 7, 1
-		CASE:
-			
-			 X6
-			7 9
-			create points at 9,7,1
-		CASE:
-			  3
-			 X 
-			7  
-			create new path 1,3,9,7
-
-		case: tile has no adjacent tiles:
-			create a new path at the four corners of the tile
-		case: tile has 3 adjacent tiles:
-			if corner 1 is occupied:
-				place a point at corner
-		*/
+		map.tileManager.CreateColliders(map.mapSize);
 	}
 }
