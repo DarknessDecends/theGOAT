@@ -66,6 +66,7 @@ public class TileMapEditor : Editor {
 			var go = new GameObject("Tiles");
 			go.transform.SetParent(map.transform);
 			go.transform.position = Vector3.zero;
+            go.tag = "Wall";
 			map.tileManager = go.AddComponent<TileManager>();
 		}
 
