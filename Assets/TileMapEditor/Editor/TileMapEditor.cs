@@ -176,8 +176,8 @@ public class TileMapEditor : Editor {
 		var brushID = brush.tileID.ToString(); //ID of tile under mouse
 		var mapID = map.tileID; //index of tile in texture
 
-		var posX = brush.transform.position.x;
-		var posY = brush.transform.position.y;
+		var posX = brush.transform.localPosition.x;
+        var posY = brush.transform.localPosition.y;
 
 		GameObject tile = GameObject.Find(map.name + "/Tiles/tile_" + (int)posX + "~" + (int)posY);
 
@@ -190,7 +190,7 @@ public class TileMapEditor : Editor {
 			tile.name = "tile_" +(int) posX + "~" + (int)posY;
 			Undo.RegisterCreatedObjectUndo(tile, "create tile"); //allows undo of tile creation
 			tile.transform.SetParent(map.tileManager.transform);
-			tile.transform.position = new Vector3(posX, posY, map.transform.position.z);
+			tile.transform.localPosition = new Vector3(posX, posY, map.transform.position.z);
 		} else { //tile already created
 			Undo.RegisterCompleteObjectUndo(tile, "edit tile"); //save snapshot for undo
 		}
