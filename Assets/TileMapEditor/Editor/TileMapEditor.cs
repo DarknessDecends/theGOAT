@@ -121,7 +121,6 @@ public class TileMapEditor : Editor {
 		map.pixelsToUnits = (int)(sprite.rect.width / sprite.bounds.size.x);
 		map.gridSize = new Vector2((width / map.pixelsToUnits) * map.mapSize.x, (height/map.pixelsToUnits) * map.mapSize.y);
 		map.offset = (int)(((Sprite)map.spriteReferences[2]).rect.x - sprite.rect.xMax);
-		Debug.Log(map.offset);
 	}
 
 	void RefreshBrush() {
@@ -180,7 +179,7 @@ public class TileMapEditor : Editor {
 		var posX = brush.transform.position.x;
 		var posY = brush.transform.position.y;
 
-		GameObject tile = GameObject.Find(map.name + "/Tiles/tile_" + brushID);
+		GameObject tile = GameObject.Find(map.name + "/Tiles/tile_" + (int)posX + "~" + (int)posY);
 
 		bool newTile = false;
 
@@ -188,7 +187,7 @@ public class TileMapEditor : Editor {
 		if (tile == null) {
 			newTile = true;
 			tile = PrefabUtility.InstantiatePrefab(Resources.Load<GameObject>("tilePrefab")) as GameObject;
-			tile.name = "tile_"+brushID;
+			tile.name = "tile_" +(int) posX + "~" + (int)posY;
 			Undo.RegisterCreatedObjectUndo(tile, "create tile"); //allows undo of tile creation
 			tile.transform.SetParent(map.tileManager.transform);
 			tile.transform.position = new Vector3(posX, posY, map.transform.position.z);
@@ -220,7 +219,7 @@ public class TileMapEditor : Editor {
 	void RemoveTile() {
 		var id = brush.tileID.ToString();
 
-		GameObject tile = GameObject.Find(map.name + "/Tiles/tile_" + id);
+		GameObject tile = GameObject.Find(map.name + "/Tiles/tile_" + (int)brush.transform.position.x + "~" + (int)brush.transform.position.y);
 
 		if (tile != null) {
 			Undo.DestroyObjectImmediate(tile);

@@ -26,12 +26,17 @@ public class TileManager : MonoBehaviour {
 	public void CreateColliders(Vector2 mapSize) {
 		collider.pathCount = 0;
 
-		GameObject[] solids = GameObject.FindGameObjectsWithTag("Solid");
+        List<Transform> solids = new List<Transform>();
+        foreach (Transform child in transform) {
+            if (child.gameObject.tag == "Solid") {
+                solids.Add(child);
+            }
+        }
 
-		Vector2[] tiles = new Vector2[solids.Length];
+		Vector2[] tiles = new Vector2[solids.Count];
 		grid = new Tile[(int)mapSize.x, (int)mapSize.y];
 
-		for (int i = 0; i < solids.Length; i++) {
+		for (int i = 0; i < solids.Count; i++) {
 			tiles[i] = solids[i].transform.localPosition;
 			tiles[i].y = -tiles[i].y; //flip negative y values
 			grid[(int)tiles[i].x, (int)tiles[i].y].occupied = true;

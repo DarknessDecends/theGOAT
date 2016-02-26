@@ -58,7 +58,9 @@
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\Sword.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\TileMapEditor\Scripts\Bug.cs" />
      <Compile Include="Assets\TileMapEditor\Scripts\TileBrush.cs" />
+     <Compile Include="Assets\TileMapEditor\Scripts\TileManager.cs" />
      <Compile Include="Assets\TileMapEditor\Scripts\TileMap.cs" />
      <None Include="Assets\Standard Assets\CrossPlatformInput\CrossPlatformInputGuidelines.txt" />
  <Reference Include="UnityEngine.UI">
