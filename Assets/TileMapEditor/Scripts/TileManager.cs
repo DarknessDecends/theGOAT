@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 
 public class TileManager : MonoBehaviour {
+	public bool dirtyColliders = false;
 	bool debug = false;
 
 	public struct Tile {
@@ -24,6 +25,11 @@ public class TileManager : MonoBehaviour {
 	private Tile[,] grid; //a 2D array representing the tilemap
 
 	public void CreateColliders(Vector2 mapSize) {
+		if (!dirtyColliders) {
+			return;
+		}
+		dirtyColliders = false;
+
 		collider.pathCount = 0;
 
         List<Transform> solids = new List<Transform>();

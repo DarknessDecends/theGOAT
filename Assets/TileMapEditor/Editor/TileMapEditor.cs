@@ -14,6 +14,14 @@ public class TileMapEditor : Editor {
 		get { return mouseHitPos.x > 0 && mouseHitPos.x < map.gridSize.x && mouseHitPos.y < 0 && mouseHitPos.y > -map.gridSize.y; }
 	}
 
+	void Awake() {
+		EditorApplication.playmodeStateChanged += CreateColliders;
+	}
+
+	void CreateColliders() {
+		map.tileManager.CreateColliders(map.mapSize);
+	}
+
 	public override void OnInspectorGUI() {
 		var oldSize = map.mapSize;
 		map.mapSize = EditorGUILayout.Vector2Field("Map Size:", map.mapSize);
@@ -90,6 +98,7 @@ public class TileMapEditor : Editor {
 		if (brush!= null) {
 			brush.gameObject.SetActive(false);
 		}
+
 	}
 
 	//update scene view
@@ -177,7 +186,7 @@ public class TileMapEditor : Editor {
 		var mapID = map.tileID; //index of tile in texture
 
 		var posX = brush.transform.localPosition.x;
-        var posY = brush.transform.localPosition.y;
+		var posY = brush.transform.localPosition.y;
 
 		GameObject tile = GameObject.Find(map.name + "/Tiles/tile_" + (int)posX + "~" + (int)posY);
 
@@ -203,11 +212,11 @@ public class TileMapEditor : Editor {
 		if (mapID <= map.solidIndex) { //if tile is solid
 			if (tile.tag != "Solid") { //and has no collider
 				tile.tag = "Solid";
-				map.tileManager.CreateColliders(map.mapSize);
+				map.tileManager.dirtyColliders = true;
 			}
 		} else if (tile.tag == "Solid") { //&& tile is not solid
 			tile.tag = "Untagged";
-			map.tileManager.CreateColliders(map.mapSize);
+			map.tileManager.dirtyColliders = true;
 		}
 
 		if (!newTile) {
@@ -219,13 +228,13 @@ public class TileMapEditor : Editor {
 	void RemoveTile() {
 		var id = brush.tileID.ToString();
 
-		GameObject tile = GameObject.Find(map.name + "/Tiles/tile_" + (int)brush.transform.position.x + "~" + (int)brush.transform.position.y);
+		GameObject tile = GameObject.Find(map.name + "/Tiles/tile_" + (int)brush.transform.localPosition.x + "~" + (int)brush.transform.localPosition.y);
 
 		if (tile != null) {
 			Undo.DestroyObjectImmediate(tile);
 		}
 
-		map.tileManager.CreateColliders(map.mapSize);
+		map.tileManager.dirtyColliders = true;
 	}
 
 	void ClearMap() {
@@ -234,6 +243,6 @@ public class TileMapEditor : Editor {
 			DestroyImmediate(t.gameObject);
 			i--;
 		}
-		map.tileManager.CreateColliders(map.mapSize);
+		//map.tileManager.CreateColliders(map.mapSize);
 	}
 }
