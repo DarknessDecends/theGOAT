@@ -32,12 +32,12 @@ public class TileManager : MonoBehaviour {
 
 		collider.pathCount = 0;
 
-        List<Transform> solids = new List<Transform>();
-        foreach (Transform child in transform) {
-            if (child.gameObject.tag == "Solid") {
-                solids.Add(child);
-            }
-        }
+		List<Transform> solids = new List<Transform>();
+		foreach (Transform child in transform) {
+			if (child.gameObject.tag == "Solid") {
+				solids.Add(child);
+			}
+		}
 
 		Vector2[] tiles = new Vector2[solids.Count];
 		grid = new Tile[(int)mapSize.x, (int)mapSize.y];

@@ -66,7 +66,7 @@ public class TileMapEditor : Editor {
 			var go = new GameObject("Tiles");
 			go.transform.SetParent(map.transform);
 			go.transform.position = Vector3.zero;
-            go.tag = "Solid";
+			go.layer = LayerMask.NameToLayer("Wall");
 			map.tileManager = go.AddComponent<TileManager>();
 		}
 
@@ -183,7 +183,6 @@ public class TileMapEditor : Editor {
 	}
 
 	void Draw() {
-		var brushID = brush.tileID.ToString(); //ID of tile under mouse
 		var mapID = map.tileID; //index of tile in texture
 
 		var posX = brush.transform.localPosition.x;
@@ -209,15 +208,17 @@ public class TileMapEditor : Editor {
 		SpriteRenderer renderer = tile.GetComponent<SpriteRenderer>();
 		renderer.sprite = brush.renderer2D.sprite;
 
-		//redo colliders if solid tiles have changed
+		//change tag if tile is not solid
 		if (mapID <= map.solidIndex) { //if tile is solid
-			if (tile.tag != "Solid") { //and has no collider
-				tile.tag = "Solid";
+			if (tile.tag != "Wall") { //and not tagged as Wall
+				tile.tag = "Wall";
 				map.tileManager.dirtyColliders = true;
 			}
-		} else if (tile.tag == "Solid") { //&& tile is not solid
-			tile.tag = "Untagged";
-			map.tileManager.dirtyColliders = true;
+		} else { //if tile is not solid
+			if (tile.tag != "Floor") { //and not marked as floor
+				tile.tag = "Floor";
+				map.tileManager.dirtyColliders = true;
+			}
 		}
 
 		if (!newTile) {
@@ -227,8 +228,6 @@ public class TileMapEditor : Editor {
 	}
 
 	void RemoveTile() {
-		var id = brush.tileID.ToString();
-
 		GameObject tile = GameObject.Find(map.name + "/Tiles/tile_" + (int)brush.transform.localPosition.x + "~" + (int)brush.transform.localPosition.y);
 
 		if (tile != null) {
