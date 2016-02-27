@@ -19,7 +19,7 @@ public class LevelManager : MonoBehaviour {
         UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
         
         //resets his position to the spawn
-        GameObject.FindObjectOfType<PlayerController>().transform.position = new Vector3(0, 0, -3);
+        GameObject.FindObjectOfType<PlayerController>().transform.position = new Vector3(13.5f, -33.5f, -3);
 
         //Sets the timer back to full
         GameObject.FindObjectOfType<Clock>().time = GameObject.FindObjectOfType<Clock>().totalTime*60f;

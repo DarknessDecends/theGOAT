@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MagicShot : MonoBehaviour {
 
+    public float knockback;
     [HideInInspector]
     public float damage;
     public Sprite boltExplosion;
@@ -22,6 +23,7 @@ public class MagicShot : MonoBehaviour {
             EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
             if (enemy){
                 enemy.hurt(damage);
+                collider.gameObject.GetComponent<Rigidbody2D>().velocity += (GetComponent<Rigidbody2D>().velocity)*knockback; //apply knockback
                 GetComponent<SpriteRenderer>().sprite = boltExplosion;
                 GetComponent<Rigidbody2D>().velocity = (new Vector2(0, 0));
                 Invoke("selfDestroy", 0.25f);
