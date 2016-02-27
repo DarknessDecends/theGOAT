@@ -34,7 +34,7 @@ public class TileManager : MonoBehaviour {
 
 		List<Transform> solids = new List<Transform>();
 		foreach (Transform child in transform) {
-			if (child.gameObject.tag == "Solid") {
+			if (child.gameObject.tag == "Wall") {
 				solids.Add(child);
 			}
 		}
@@ -122,6 +122,18 @@ public class TileManager : MonoBehaviour {
 
 
 
+
+
+	public void varyFloorSprites() {
+		int i = 0;
+		foreach(Transform child in transform) {
+			if (child.gameObject.tag == "Floor") {
+				i++;
+				child.localRotation = Quaternion.Euler(0, 0, 90*((int)(Random.value*4)));
+			}
+		}
+		Debug.Log(i);
+	}
 
 
 	static void SortChildren(GameObject gameObject) {
