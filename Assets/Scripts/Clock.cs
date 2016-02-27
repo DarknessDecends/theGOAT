@@ -1,20 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System;
 
 public class Clock : MonoBehaviour {
 	public float totalTime;
-    public float time;
+	public float time;
 
 	private const int musicBPM = 88; //Beats Per Minute
-	private TextMesh textMesh;
-    private LevelManager levelManager;
-    
+	private Text text;
+	private LevelManager levelManager;
+	
 
 	// Use this for initialization
 	void Start () {
-        levelManager = GameObject.FindObjectOfType<LevelManager>();
+		levelManager = GameObject.FindObjectOfType<LevelManager>();
 		time = 60f * totalTime; //60 seconds per minute
-		textMesh = GetComponent<TextMesh>();
+		text = GetComponent<Text>();
 	}
 	
 	// Update is called once per frame
@@ -24,9 +25,9 @@ public class Clock : MonoBehaviour {
 
 		//Match actual time, not music
 		time -= Time.deltaTime; //decrement time
-        if (time <= 0) {
-            levelManager.resetLevel();
-        }
-		textMesh.text = String.Format("{0:0}:{1:00}", Mathf.Floor(time/60), time % 60);
+		if (time <= 0) {
+			levelManager.resetLevel();
+		}
+		text.text = String.Format("{0:0}:{1:00}", Mathf.Floor(time/60), time % 60);
 	}
 }

@@ -79,6 +79,7 @@ MonoBehaviour:
   detectionRange: 8
   topDamage: 50
   bottomDamage: 30
+  knockback: 1
   player: {fileID: 0}
 --- !u!212 &21266588
 SpriteRenderer:
@@ -124,6 +125,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: detectionRange
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: knockback
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

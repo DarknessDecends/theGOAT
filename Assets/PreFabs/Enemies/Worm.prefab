@@ -97,6 +97,7 @@ MonoBehaviour:
   detectionRange: 4
   topDamage: 100
   bottomDamage: 80
+  knockback: 1
   player: {fileID: 0}
 --- !u!212 &21210258
 SpriteRenderer:
@@ -162,6 +163,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Name
       value: Worm
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: knockback
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

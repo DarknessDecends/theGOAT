@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class Health : MonoBehaviour {
 
-	public PlayerController player;
-	TextMesh text;
+	private PlayerController player;
+	Text text;
+	
 	// Use this for initialization
 	void Start () {
-		text = GetComponent<TextMesh>();
+		player = PlayerController.instance;
+		text = GetComponent<Text>();
 	}
 	
 	// Update is called once per frame

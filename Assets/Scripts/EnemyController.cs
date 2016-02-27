@@ -9,8 +9,9 @@ public class EnemyController : MonoBehaviour {
 	public int detectionRange;
 	public int topDamage;
 	public int bottomDamage;
-	public Transform player;
+	public float knockback;
 
+	private Transform player;
 	private bool detected;
 	private int directionchange = 0;
 	private int horizontalMovement;
@@ -21,10 +22,10 @@ public class EnemyController : MonoBehaviour {
 	private bool recentHit = false;
 
 	void Start() {
+		player = PlayerController.instance.transform;
 		rigidBody = this.GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		renderer = GetComponent<SpriteRenderer>();
-		player = GameObject.FindObjectOfType<PlayerController>().transform;
 	}
 
 	void Update () {
@@ -84,7 +85,11 @@ public class EnemyController : MonoBehaviour {
 	void OnCollisionEnter2D(Collision2D collider){
 		if (detected && collider.transform == player) { //if enemy sees player an is touching him
 			PlayerController foundPlayer = collider.gameObject.GetComponent<PlayerController>(); ;
-				foundPlayer.hurt(Random.Range(bottomDamage, topDamage + 1)); //hit the player
+			foundPlayer.hurt(Random.Range(bottomDamage, topDamage + 1)); //hit the player
+			Vector2 atPlayer = (foundPlayer.transform.position - this.transform.position).normalized*knockback;
+
+			foundPlayer.GetComponent<Rigidbody2D>().AddForce(atPlayer, ForceMode2D.Impulse); //.velocity += atPlayer; //apply knockback
+			Debug.Log(atPlayer);
 		}
 	}
 

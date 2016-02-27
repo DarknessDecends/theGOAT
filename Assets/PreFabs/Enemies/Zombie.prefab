@@ -85,6 +85,7 @@ MonoBehaviour:
   detectionRange: 8
   topDamage: 150
   bottomDamage: 110
+  knockback: 1
   player: {fileID: 0}
 --- !u!212 &21263320
 SpriteRenderer:
@@ -138,6 +139,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_LocalScale.y
       value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: knockback
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
