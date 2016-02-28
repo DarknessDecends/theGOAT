@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Wall
   - Floor
+  - Solid
   layers:
   - Default
   - TransparentFX
@@ -42,4 +43,10 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Player
+    uniqueID: 4288240895
+    locked: 0
+  - name: Weapon
+    uniqueID: 179867337
     locked: 0

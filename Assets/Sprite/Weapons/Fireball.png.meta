@@ -1,9 +1,11 @@
 fileFormatVersion: 2
-guid: bd5d9928566aee2448c160cbe5b77938
-timeCreated: 1456642443
+guid: 0514c4700c765d647851d32c595dfa67
+timeCreated: 1456611597
 licenseType: Free
 TextureImporter:
-  fileIDToRecycleName: {}
+  fileIDToRecycleName:
+    21300000: Fireball_0
+    21300002: Fireball_1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -38,7 +40,7 @@ TextureImporter:
   rGBM: 0
   compressionQuality: 50
   allowsAlphaSplitting: 0
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -49,7 +51,44 @@ TextureImporter:
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: Fireball_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -4, y: 9}
+        - {x: -9, y: 4}
+        - {x: -9, y: -7}
+        - {x: 6, y: -7}
+        - {x: 8, y: -2}
+        - {x: 8, y: 8}
+        - {x: 4, y: 9}
+    - name: Fireball_1
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -5, y: 9}
+        - {x: -8, y: 4}
+        - {x: -8, y: -6}
+        - {x: -4, y: -8}
+        - {x: 7, y: -8}
+        - {x: 8, y: -3}
+        - {x: 8, y: 7}
+        - {x: 5, y: 9}
     outline: []
   spritePackingTag: 
   userData: 

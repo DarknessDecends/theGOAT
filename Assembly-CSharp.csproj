@@ -54,9 +54,11 @@
      <Compile Include="Assets\Scripts\Friendly Projectiles\Staff.cs" />
      <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
+     <Compile Include="Assets\Scripts\Mele.cs" />
+     <Compile Include="Assets\Scripts\MusicManager.cs" />
      <Compile Include="Assets\Scripts\Pickup Scripts\WeaponPickup.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\Sword.cs" />
+     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
      <Compile Include="Assets\Scripts\Weapon.cs" />
      <Compile Include="Assets\TileMapEditor\Scripts\Bug.cs" />
      <Compile Include="Assets\TileMapEditor\Scripts\TileBrush.cs" />

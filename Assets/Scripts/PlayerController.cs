@@ -11,9 +11,10 @@ public class PlayerController : MonoBehaviour {
 	private Rigidbody2D rigidBody;
 	private Animator animator;
 	private LevelManager levelManager;
+    public int score = 0;
 
 
-	void Awake() {
+    void Awake() {
 		if (instance == null) {
 			instance = this;
 			DontDestroyOnLoad(gameObject);
@@ -82,7 +83,23 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void OnTriggerEnter2D(Collider2D collider) {
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int val) {
+        score = val;
+    }
+
+    public void Score(int val) {
+        if (score + val >= 0) {
+            score += val;
+        } else {
+            score = 0;
+        }
+    }
+
+    void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.gameObject.layer == LayerMask.NameToLayer("Pickups")) {
 			string name = collider.gameObject.name;
 			if (name == "Basic Staff Pickup") {
@@ -99,6 +116,46 @@ public class PlayerController : MonoBehaviour {
 			   transform.GetChild(0).gameObject.SetActive(true);
 			   Destroy(collider.gameObject);
 		   } //end if
-		} //end if
+           if (name == "BowPickup") {
+               weapons.Add(transform.GetChild(1).GetComponent<Weapon>()); //add sword
+               transform.GetChild(1).gameObject.SetActive(true);
+               Destroy(collider.gameObject);
+           } //end if
+           if (name == "AirStaffPickup") {
+               weapons.Add(transform.GetChild(2).GetComponent<Weapon>()); //add sword
+               transform.GetChild(2).gameObject.SetActive(true);
+               Destroy(collider.gameObject);
+           } //end if
+           if (name == "Earth Staff Pickup") {
+               weapons.Add(transform.GetChild(3).GetComponent<Weapon>()); //add sword
+               transform.GetChild(3).gameObject.SetActive(true);
+               Destroy(collider.gameObject);
+           } //end if
+           if (name == "Water Staff Pickup") {
+               weapons.Add(transform.GetChild(4).GetComponent<Weapon>()); //add sword
+               transform.GetChild(4).gameObject.SetActive(true);
+               Destroy(collider.gameObject);
+           } //end if
+           if (name == "Fire Staff Pickup") {
+               weapons.Add(transform.GetChild(5).GetComponent<Weapon>()); //add sword
+               transform.GetChild(5).gameObject.SetActive(true);
+               Destroy(collider.gameObject);
+           } //end if
+           if (name == "Battle Axe Pickup") {
+               weapons.Add(transform.GetChild(6).GetComponent<Weapon>()); //add sword
+               transform.GetChild(6).gameObject.SetActive(true);
+               Destroy(collider.gameObject);
+           } //end if
+           if (name == "Mace Pickup") {
+               weapons.Add(transform.GetChild(7).GetComponent<Weapon>()); //add sword
+               transform.GetChild(7).gameObject.SetActive(true);
+               Destroy(collider.gameObject);
+           } //end if
+           if (name == "Club Pickup") {
+               weapons.Add(transform.GetChild(8).GetComponent<Weapon>()); //add sword
+               transform.GetChild(8).gameObject.SetActive(true);
+               Destroy(collider.gameObject);
+           } //end if
+        } //end if
 	} //end onTriggerEnter2D
 } //end Class

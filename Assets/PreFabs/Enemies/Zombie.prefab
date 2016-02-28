@@ -81,12 +81,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 300
   speed: 40
+  scoreWorth: 300
   movementChangeTime: 30
   detectionRange: 8
   topDamage: 150
   bottomDamage: 110
   knockback: 1
-  player: {fileID: 0}
 --- !u!212 &21263320
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -143,6 +143,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: knockback
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: scoreWorth
+      value: 300
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
