@@ -550,8 +550,8 @@ RectTransform:
   m_RootOrder: 1
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -9}
-  m_SizeDelta: {x: 2000, y: 400}
+  m_AnchoredPosition: {x: -7, y: -36}
+  m_SizeDelta: {x: 1900, y: 500}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1174670517
 MonoBehaviour:
@@ -574,7 +574,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: 5c3b3216ed7b8884ab455a93825ea80b, type: 3}
-    m_FontSize: 70
+    m_FontSize: 60
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -585,10 +585,11 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 2
-  m_Text: '1. You must complete the level in the amount of time given.           2.
-    If you die, you restart, but keep your weapons.                                      3.  if
-    you run out of time you restart, but keep your weapons.      4. when you arrive
-    at the boss fight the score you have is how much time you have to beat it
+  m_Text: '1. You must complete the level in the amount of time given.                         2.
+    If you die, you restart, but keep your weapons.                                                   3.  if
+    you run out of time you restart, but keep your weapons.                     4.
+    when you arrive at the boss fight the score you have is how much time you have
+    to beat it.
 
 '
 --- !u!222 &1174670518

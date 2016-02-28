@@ -26,7 +26,7 @@ public class Clock : MonoBehaviour {
 		//Match actual time, not music
 		time -= Time.deltaTime; //decrement time
 		if (time <= 0) {
-			levelManager.resetLevel();
+			levelManager.LoadLevel("TimeOut");
 		}
 		text.text = String.Format("{0:0}:{1:00}", Mathf.Floor(time/60), time % 60);
 	}

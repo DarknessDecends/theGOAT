@@ -77,10 +77,12 @@ public class PlayerController : MonoBehaviour {
 	} //end update
 
 	public void hurt(float damage) {
-		health -= damage;
-		if (health <= 0) {
-			levelManager.resetLevel();
-		}
+		if (health - damage <= 0) {
+            Debug.Log("DIE");
+			levelManager.LoadLevel("Death");
+        } else {
+            health -= damage;
+        }
 	}
 
     public int getScore() {
