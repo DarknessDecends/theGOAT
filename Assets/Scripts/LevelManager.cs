@@ -26,7 +26,7 @@ public class LevelManager : MonoBehaviour {
         GameObject.FindObjectOfType<PlayerController>().health = GameObject.FindObjectOfType<PlayerController>().maxHealth;
 
         //Reloads the Scene
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Level 1");
         
         //resets his position to the spawn
         GameObject.FindObjectOfType<PlayerController>().transform.position = new Vector3(13.5f, -33.5f, -3);
@@ -36,7 +36,7 @@ public class LevelManager : MonoBehaviour {
     }
 
     public void hardReset() {
-        Destroy(player);
+        Destroy(player.gameObject);
         LoadLevel("Start Screen");
     }
 

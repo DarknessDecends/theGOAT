@@ -4,7 +4,7 @@ using UnityEngine;
 	public class Camera2DFollow : MonoBehaviour {
 	private Transform target;
 
-	private static Camera2DFollow instance;
+	/*private static Camera2DFollow instance;
 
 	void Awake() {
 		if (instance == null) {
@@ -15,7 +15,7 @@ using UnityEngine;
 			Destroy(gameObject);
 		}
 	}
-
+    */
 	// Use this for initialization
 	private void Start() {
 		target = PlayerController.instance.transform;

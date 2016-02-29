@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &137190
 GameObject:
   m_ObjectHideFlags: 0
@@ -33,7 +33,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &142792
 GameObject:
   m_ObjectHideFlags: 0
@@ -51,7 +51,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &143964
 GameObject:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &149742
 GameObject:
   m_ObjectHideFlags: 0
@@ -86,7 +86,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &150056
 GameObject:
   m_ObjectHideFlags: 0
@@ -104,7 +104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &154752
 GameObject:
   m_ObjectHideFlags: 0
@@ -121,7 +121,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &186982
 GameObject:
   m_ObjectHideFlags: 0
@@ -159,7 +159,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &192448
 GameObject:
   m_ObjectHideFlags: 0
@@ -177,7 +177,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &402650
 Transform:
   m_ObjectHideFlags: 1
@@ -189,7 +189,7 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 474046}
-  m_RootOrder: 5
+  m_RootOrder: 3
 --- !u!4 &422568
 Transform:
   m_ObjectHideFlags: 1
@@ -213,7 +213,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.7, z: 1}
   m_Children: []
   m_Father: {fileID: 474046}
-  m_RootOrder: 7
+  m_RootOrder: 5
 --- !u!4 &429520
 Transform:
   m_ObjectHideFlags: 1
@@ -225,7 +225,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 474046}
-  m_RootOrder: 8
+  m_RootOrder: 6
 --- !u!4 &449774
 Transform:
   m_ObjectHideFlags: 1
@@ -237,7 +237,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 474046}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!4 &465956
 Transform:
   m_ObjectHideFlags: 1
@@ -249,7 +249,7 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 474046}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!4 &467308
 Transform:
   m_ObjectHideFlags: 1
@@ -261,7 +261,7 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.6, z: 1}
   m_Children: []
   m_Father: {fileID: 474046}
-  m_RootOrder: 4
+  m_RootOrder: 8
 --- !u!4 &468590
 Transform:
   m_ObjectHideFlags: 1
@@ -273,7 +273,7 @@ Transform:
   m_LocalScale: {x: 0.6, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 474046}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!4 &474046
 Transform:
   m_ObjectHideFlags: 1
@@ -281,18 +281,18 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.47, y: -38.02, z: -3}
+  m_LocalPosition: {x: 13.48, y: -33.49, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 422568}
-  - {fileID: 468590}
   - {fileID: 465956}
-  - {fileID: 480998}
-  - {fileID: 467308}
+  - {fileID: 468590}
   - {fileID: 402650}
-  - {fileID: 449774}
+  - {fileID: 480998}
   - {fileID: 426660}
   - {fileID: 429520}
+  - {fileID: 449774}
+  - {fileID: 467308}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &480998
@@ -306,7 +306,7 @@ Transform:
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 474046}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!50 &5033378
 Rigidbody2D:
   serializedVersion: 2
@@ -466,7 +466,7 @@ MonoBehaviour:
   damage: 20
   cooldown: 0.5
   boltSpeed: 23
-  boltPrefab: {fileID: 170800, guid: 3c7e9a4da8c19d44988b457ef645cd85, type: 2}
+  boltPrefab: {fileID: 101434, guid: 94b950fd9f526974a855ce6df8e6aa3d, type: 2}
 --- !u!114 &11403338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -542,6 +542,7 @@ MonoBehaviour:
   maxHealth: 300
   weapons: []
   health: 250
+  score: 0
 --- !u!114 &11442136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -556,7 +557,7 @@ MonoBehaviour:
   damage: 200
   cooldown: 5
   boltSpeed: 10
-  boltPrefab: {fileID: 170800, guid: 3c7e9a4da8c19d44988b457ef645cd85, type: 2}
+  boltPrefab: {fileID: 163618, guid: 5860678cac1cef043a78c277a574c0ed, type: 2}
 --- !u!114 &11444922
 MonoBehaviour:
   m_ObjectHideFlags: 1
