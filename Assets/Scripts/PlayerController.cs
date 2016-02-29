@@ -159,5 +159,12 @@ public class PlayerController : MonoBehaviour {
                Destroy(collider.gameObject);
            } //end if
         } //end if
+        if (collider.gameObject.layer == LayerMask.NameToLayer("FakeWall")) {
+            string tag = collider.gameObject.tag;
+            var objects = GameObject.FindGameObjectsWithTag(tag);
+            foreach (var obj in objects) {
+                Destroy(obj);
+            } //end foreach
+        } //end if
 	} //end onTriggerEnter2D
 } //end Class

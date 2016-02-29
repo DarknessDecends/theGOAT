@@ -118,12 +118,6 @@ public class TileManager : MonoBehaviour {
 	}
 
 
-
-
-
-
-
-
 	public void varyFloorSprites() {
 		int i = 0;
 		foreach(Transform child in transform) {
