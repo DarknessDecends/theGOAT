@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 409824}
   - 212: {fileID: 21252612}
-  - 95: {fileID: 9522952}
   - 114: {fileID: 11471854}
   - 60: {fileID: 6069270}
   - 50: {fileID: 5053134}
+  - 95: {fileID: 9551106}
   m_Layer: 0
   m_Name: Fireball
   m_TagString: Untagged
@@ -70,7 +70,7 @@ PolygonCollider2D:
       - {x: 0.18750095, y: -0.016475677}
       - {x: 0.18998718, y: 0.15755081}
       - {x: 0.1332016, y: 0.21670151}
---- !u!95 &9522952
+--- !u!95 &9551106
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -79,7 +79,7 @@ Animator:
   m_GameObject: {fileID: 164218}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3de18b87178d6ed459303f539f5f15f3, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
