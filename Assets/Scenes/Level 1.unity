@@ -2359,7 +2359,8 @@ Prefab:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11401452, guid: b56d17061e71bde41806c5e05bb5e665, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: b56d17061e71bde41806c5e05bb5e665, type: 2}
   m_IsPrefabParent: 0
 --- !u!1001 &43099561
@@ -48085,7 +48086,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   totalTime: 2
-  time: 0
+  time: 2
 --- !u!1001 &1101942657
 Prefab:
   m_ObjectHideFlags: 0
@@ -55198,6 +55199,25 @@ Transform:
 Transform:
   m_PrefabParentObject: {fileID: 415086, guid: a845bef4bfebc83469e5d38e7ef5087b, type: 2}
   m_PrefabInternal: {fileID: 230508475}
+--- !u!1 &1274980283 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 154752, guid: b56d17061e71bde41806c5e05bb5e665, type: 2}
+  m_PrefabInternal: {fileID: 42327663}
+--- !u!114 &1274980284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1274980283}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba313b131852f0346b124188ae39c9e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  cooldown: 0.5
+  speed: 23
+  projectilePrefab: {fileID: 101434, guid: 94b950fd9f526974a855ce6df8e6aa3d, type: 2}
 --- !u!4 &1275032778 stripped
 Transform:
   m_PrefabParentObject: {fileID: 415086, guid: a845bef4bfebc83469e5d38e7ef5087b, type: 2}

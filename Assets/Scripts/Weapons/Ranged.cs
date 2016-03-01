@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Ranged : Weapon{
+public class Ranged : Weapon {
 
 	public int speed; //how fast the arrow travels
 	public GameObject projectilePrefab;
@@ -27,12 +27,17 @@ public class Ranged : Weapon{
 		{
 			//make new bullet
 			Projectile shot = (Instantiate(projectilePrefab) as GameObject).GetComponent<Projectile>();
-			shot.transform.position = transform.position;
-			shot.transform.rotation *= angle; //add the angles (some prefabs have rotation.y == -45)
+
+			Vector3 shotVector = angle * Vector3.right; //get unit vector pointing from player to mouse
+
+			shot.transform.position = transform.position + shotVector * 0.1f; //spawn the projectile a little bit in front of the player
+
+			shot.transform.rotation *= angle; //rotate the shot sprite by angle (some prefabs have rotation.y == -45)
+
 			shot.damage = this.damage; //set damage
-									   //accelerate bullet
-			Vector2 shotVector = angle * Vector3.right * speed; //rotate "right" vector by angle
-			shot.GetComponent<Rigidbody2D>().AddForce(shotVector, ForceMode2D.Impulse);
+
+			//accelerate bullet
+			shot.GetComponent<Rigidbody2D>().AddForce(shotVector*speed, ForceMode2D.Impulse);
 			cooldownTimer = cooldown; //reset cooldownTimer
 		}
 	}

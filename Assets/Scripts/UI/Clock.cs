@@ -4,6 +4,8 @@ using System;
 
 public class Clock : MonoBehaviour {
 	public float totalTime;
+
+	[HideInInspector]
 	public float time;
 
 	private const int musicBPM = 88; //Beats Per Minute
@@ -20,7 +22,6 @@ public class Clock : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//match music Beats Per Minute
 		//time -= Time.deltaTime*(musicBPM/60f); //decrement by musicBPM (e.g. 88 clock ticks per second)
 
 		//Match actual time, not music

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2e1b6b6d113f3624baa5b565c4f36be6
-timeCreated: 1456705705
+timeCreated: 1456810790
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -59,19 +59,19 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.030803092, y: 0.0616062}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: -16, y: -12}
-        - {x: -16, y: -16}
-        - {x: -12, y: -16}
-        - {x: 16, y: 2}
-        - {x: 16, y: 13}
-        - {x: 14, y: 16}
-        - {x: 0, y: 16}
-        - {x: -3, y: 15}
-        - {x: -14, y: -7}
+      - - {x: -0.9856987, y: 2.0286016}
+        - {x: -0.9856987, y: -1.9713984}
+        - {x: 3.0143013, y: -1.9713984}
+        - {x: 31.014301, y: 16.028603}
+        - {x: 31.014301, y: 27.028603}
+        - {x: 29.014301, y: 30.028603}
+        - {x: 15.014301, y: 30.028603}
+        - {x: 12.014301, y: 29.028603}
+        - {x: 1.0143013, y: 7.0286016}
     - name: Water Stream_1
       rect:
         serializedVersion: 2
@@ -79,16 +79,16 @@ TextureImporter:
         y: 0
         width: 32
         height: 32
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.031128287, y: 0.061529826}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline:
-      - - {x: 0, y: 16}
-        - {x: -16, y: -10}
-        - {x: -16, y: -16}
-        - {x: -10, y: -16}
-        - {x: 15, y: -3}
-        - {x: 15, y: 16}
+      - - {x: 15.003895, y: 30.031046}
+        - {x: -0.9961052, y: 4.031046}
+        - {x: -0.9961052, y: -1.9689541}
+        - {x: 5.003895, y: -1.9689541}
+        - {x: 30.003895, y: 11.031046}
+        - {x: 30.003895, y: 30.031046}
     outline: []
   spritePackingTag: 
   userData: 

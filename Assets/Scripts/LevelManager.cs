@@ -5,7 +5,7 @@ public class LevelManager : MonoBehaviour {
     private PlayerController player;
 
     void Start() {
-        player = GameObject.FindObjectOfType<PlayerController>();
+        player = PlayerController.instance;
     }
 
     public void LoadLevel(string name){
