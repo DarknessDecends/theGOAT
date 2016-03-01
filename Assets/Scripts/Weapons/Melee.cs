@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-public class Mele : Weapon {
+public class Melee : Weapon {
 
 	public int swingSpeed;
 	private int change;

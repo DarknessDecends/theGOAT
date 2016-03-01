@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class MagicShot : MonoBehaviour {
+public class Projectile : MonoBehaviour {
 
     public float knockback;
     [HideInInspector]

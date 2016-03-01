@@ -79,7 +79,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 465956}
   - 212: {fileID: 21213018}
-  - 114: {fileID: 11401162}
+  - 114: {fileID: 11436776}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -437,21 +437,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11401162
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 149742}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c09f872d3adea1d488cd7b182b0de504, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 90
-  cooldown: 2
-  arrowSpeed: 40
-  arrowPrefab: {fileID: 114808, guid: 5f05295feefaad24bafcccec1b058d6e, type: 2}
 --- !u!114 &11401452
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -465,8 +450,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 20
   cooldown: 0.5
-  boltSpeed: 23
-  boltPrefab: {fileID: 101434, guid: 94b950fd9f526974a855ce6df8e6aa3d, type: 2}
+  speed: 23
+  projectilePrefab: {fileID: 101434, guid: 94b950fd9f526974a855ce6df8e6aa3d, type: 2}
 --- !u!114 &11403338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -525,8 +510,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 50
   cooldown: 3
-  boltSpeed: 20
-  boltPrefab: {fileID: 157528, guid: 129356b69289cf542b8cba8f7226d8ec, type: 2}
+  speed: 20
+  projectilePrefab: {fileID: 157528, guid: 129356b69289cf542b8cba8f7226d8ec, type: 2}
 --- !u!114 &11436130
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -543,6 +528,21 @@ MonoBehaviour:
   weapons: []
   health: 250
   score: 0
+--- !u!114 &11436776
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a2935d950482a04dad5713607fd65c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 90
+  cooldown: 2
+  speed: 40
+  projectilePrefab: {fileID: 114808, guid: 5f05295feefaad24bafcccec1b058d6e, type: 2}
 --- !u!114 &11442136
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -556,8 +556,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 200
   cooldown: 5
-  boltSpeed: 10
-  boltPrefab: {fileID: 163618, guid: 5860678cac1cef043a78c277a574c0ed, type: 2}
+  speed: 10
+  projectilePrefab: {fileID: 163618, guid: 5860678cac1cef043a78c277a574c0ed, type: 2}
 --- !u!114 &11444922
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -571,8 +571,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   cooldown: 1
-  boltSpeed: 30
-  boltPrefab: {fileID: 164218, guid: cf9c878bc9f30a045b9719dd680e961a, type: 2}
+  speed: 30
+  projectilePrefab: {fileID: 164218, guid: cf9c878bc9f30a045b9719dd680e961a, type: 2}
 --- !u!114 &11479696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -601,8 +601,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 100
   cooldown: 2
-  boltSpeed: 20
-  boltPrefab: {fileID: 170800, guid: 3c7e9a4da8c19d44988b457ef645cd85, type: 2}
+  speed: 20
+  projectilePrefab: {fileID: 170800, guid: 3c7e9a4da8c19d44988b457ef645cd85, type: 2}
 --- !u!212 &21211788
 SpriteRenderer:
   m_ObjectHideFlags: 1

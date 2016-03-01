@@ -5,7 +5,7 @@ public class EnemyController : MonoBehaviour {
 	
 	public float health = 500;
 	public float speed = 500;
-    public int scoreWorth;
+	public int scoreWorth;
 	public int movementChangeTime=500;
 	public int detectionRange;
 	public int topDamage;
@@ -75,7 +75,7 @@ public class EnemyController : MonoBehaviour {
 	public void hurt(float damage) {
 		health -= damage;
 		if (health <= 0) {
-            player.GetComponentInParent<PlayerController>().Score(scoreWorth);
+			player.GetComponentInParent<PlayerController>().Score(scoreWorth);
 			Destroy(gameObject);
 		} else {
 			recentHit = true;
