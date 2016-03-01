@@ -90,7 +90,8 @@ public class EnemyController : MonoBehaviour {
 			foundPlayer.hurt(Random.Range(bottomDamage, topDamage + 1)); //hit the player
 			Vector2 atPlayer = (foundPlayer.transform.position - this.transform.position).normalized*knockback;
 
-			foundPlayer.GetComponent<Rigidbody2D>().AddForce(atPlayer, ForceMode2D.Impulse); //.velocity += atPlayer; //apply knockback
+			//foundPlayer.GetComponent<Rigidbody2D>().AddForce(atPlayer, ForceMode2D.Impulse); //.velocity += atPlayer; //apply knockback
+			collider.gameObject.GetComponent<Rigidbody2D>().velocity += (GetComponent<Rigidbody2D>().velocity)*knockback; //apply knockback
 			Debug.Log(atPlayer);
 		}
 	}

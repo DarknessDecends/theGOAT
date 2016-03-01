@@ -8,11 +8,6 @@ public class Projectile : MonoBehaviour {
     public float damage;
     public Sprite boltExplosion;
 
-    void Update()
-    {
-        
-    }
-
     void OnTriggerEnter2D(Collider2D collider){
         if (collider.gameObject.layer == LayerMask.NameToLayer("Wall")){
             GetComponent<SpriteRenderer>().sprite = boltExplosion;

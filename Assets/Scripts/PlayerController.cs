@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour {
 	public float health;
 	public int score = 0;
 
+	private bool recentHit;
+	private new SpriteRenderer renderer;
 	private Rigidbody2D rigidBody;
 	private Animator animator;
 	private LevelManager levelManager;
@@ -26,30 +28,34 @@ public class PlayerController : MonoBehaviour {
 
 	void Start() {
 		health = maxHealth;
+		this.renderer = GetComponent<SpriteRenderer>();
 		this.animator = GetComponent<Animator>();
 		this.rigidBody = GetComponent<Rigidbody2D>();
 		levelManager = GameObject.FindObjectOfType<LevelManager>();
 
 		weapons = new List<Weapon>();
+
+		recentHit = false;
 	}
 
 	void Update () {
-		//arrowkeys change velocity
-		Vector2 velocity = Vector2.zero;
-		if (Input.GetKey("up") || Input.GetKey("w")) {
-			velocity += Vector2.up;
+		if (recentHit == false) {
+			//arrowkeys change velocity
+			Vector2 velocity = Vector2.zero;
+			if (Input.GetKey("up") || Input.GetKey("w")) {
+				velocity += Vector2.up;
+			}
+			if (Input.GetKey("down") || Input.GetKey("s")) {
+				velocity += Vector2.down;
+			}
+			if (Input.GetKey("left") || Input.GetKey("a")) {
+				velocity += Vector2.left;
+			}
+			if (Input.GetKey("right") || Input.GetKey("d")) {
+				velocity += Vector2.right;
+			}
+			rigidBody.velocity = velocity.normalized*speed*Time.deltaTime;
 		}
-		if (Input.GetKey("down") || Input.GetKey("s")) {
-			velocity += Vector2.down;
-		}
-		if (Input.GetKey("left") || Input.GetKey("a")) {
-			velocity += Vector2.left;
-		}
-		if (Input.GetKey("right") || Input.GetKey("d")) {
-			velocity += Vector2.right;
-		}
-		rigidBody.velocity = velocity.normalized*speed*Time.deltaTime;
-		
 		//play walk animation if moving
 		animator.SetBool("moving", rigidBody.velocity != Vector2.zero);
 
@@ -81,7 +87,16 @@ public class PlayerController : MonoBehaviour {
 			levelManager.LoadLevel("Death");
 		} else {
 			health -= damage;
+			recentHit = true;
+			renderer.color = Color.red;
+			Invoke("hitTimeOut", 0.03f);
+			
 		}
+	}
+
+	void hitTimeOut() {
+		renderer.color = Color.white;
+		recentHit = false;
 	}
 
 	public int getScore() {

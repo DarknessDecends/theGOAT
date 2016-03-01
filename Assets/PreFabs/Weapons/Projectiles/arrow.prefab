@@ -75,10 +75,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 114808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 17572ae48626a5d40935ce216ad5d370, type: 3}
+  m_Script: {fileID: 11500000, guid: 69e8742b49b0c5b4986921106aa84590, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 100
+  knockback: 0
+  damage: 0
+  boltExplosion: {fileID: 21300000, guid: 0a70655399332cc459087fe545556ea2, type: 3}
 --- !u!212 &21241882
 SpriteRenderer:
   m_ObjectHideFlags: 1
