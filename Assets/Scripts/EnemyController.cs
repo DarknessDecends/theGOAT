@@ -60,7 +60,7 @@ public class EnemyController : MonoBehaviour {
 					this.rigidBody.velocity = velocity; //set new velocity
 
 					//play moving animation if moving
-					//animator.SetBool("moving", this.rigidBody.velocity != Vector2.zero);
+					animator.SetBool("moving", this.rigidBody.velocity != Vector2.zero);
 				}
 				if (this.rigidBody.velocity.x < 0) { //if their going left face left if their going right face right
 					transform.rotation = Quaternion.Euler(0, 180, 0);

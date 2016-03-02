@@ -40,19 +40,10 @@ public class BossController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (health/maxHealth < .25) {
-            speed = 60;
-            cooldown = 2.66f;
-        } else if (health/maxHealth < .5) {
-            speed = 40;
-            cooldown = 4.33f;
-        }
-
-
-
         detected = false;
         if (player != null)
         { //if they player exists
+            Vector2 atPlayer = player.position - transform.position; //vector from boss to player
             if (player.position.x > roomCoords[0] && //roomCoords[0] is left x coord
                 player.position.x < roomCoords[1] && //roomCoords[0] is right x coord
                 player.position.y > roomCoords[2] && //roomCoords[0] is bottom y coord
@@ -67,24 +58,23 @@ public class BossController : MonoBehaviour
                     timeSwitched = true;
                 }
 
-                Vector2 dir = player.position - transform.position;
+                
                 if (thrown == 2) {
-                    this.rigidBody.velocity = dir.normalized * speed * 4 * Time.deltaTime;
+                    this.rigidBody.velocity = atPlayer.normalized * speed * 4 * Time.deltaTime;
                 } else if (thrown == 0) {
-                    this.rigidBody.velocity = new Vector2(0f,0f);
+                    this.rigidBody.velocity = Vector2.zero; ;
                     animator.SetBool("throw", true);
                     thrown = 1;
                     Invoke("thrownTimeOut", cooldown);
                 }
                 currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
-                if (currentBaseState.fullPathHash == attackEnd && thrown == 1) {
+                if (currentBaseState.IsName("attackEnd") && thrown == 1) {
                     animator.SetBool("throw", false);
                     thrown = 2;
-                    attack(Quaternion.FromToRotation(Vector3.right, dir));
+                    attack(Quaternion.FromToRotation(Vector3.right, atPlayer));
                 }
             }
-            if (!detected)
-            { //return to spawn, reset health
+            if (!detected) { //return to spawn, reset health
                 health = maxHealth;
                 int roundx = Mathf.FloorToInt(resetPoint.x - transform.position.x);
                 int roundy = Mathf.FloorToInt(resetPoint.x - transform.position.y);
@@ -92,31 +82,28 @@ public class BossController : MonoBehaviour
 
                 this.rigidBody.velocity = dir.normalized * speed * 4 * Time.deltaTime;
             }
-            if (Mathf.Abs(this.rigidBody.velocity.x) > Mathf.Abs(this.rigidBody.velocity.y))
-            {
-                if (this.rigidBody.velocity.x > 0)
-                {
-                    animator.SetBool("isLeft", true);
-                    animator.SetBool("isUp", false);
-                    animator.SetBool("isDown", false);
-                    transform.rotation = Quaternion.Euler(0, 0, 0);
-                }
-                else {
-                    animator.SetBool("isLeft", true);
-                    animator.SetBool("isUp", false);
-                    animator.SetBool("isDown", false);
+            //if distance between x's is greater than distance between y's
+            if (Mathf.Abs((this.transform.position.x - player.position.x)) > Mathf.Abs((this.transform.position.y - player.position.y))) {
+                animator.SetBool("isHorizontal", true);
+                animator.SetBool("isUp", false);
+                animator.SetBool("isDown", false);
+
+                if (atPlayer.x < 0) {
                     transform.rotation = Quaternion.Euler(0, 180, 0);
                 }
-            }
-            else {
-                if (this.rigidBody.velocity.y > 0)
+                else {
+                   transform.rotation = Quaternion.Euler(0, 0, 0);
+                }
+
+            } else {
+                if (this.transform.position.y < player.position.y)
                 {
-                    animator.SetBool("isLeft", false);
+                    animator.SetBool("isHorizontal", false);
                     animator.SetBool("isUp", true);
                     animator.SetBool("isDown", false);
                 }
                 else {
-                    animator.SetBool("isLeft", false);
+                    animator.SetBool("isHorizontal", false);
                     animator.SetBool("isUp", false);
                     animator.SetBool("isDown", true);
                 }
@@ -135,6 +122,15 @@ public class BossController : MonoBehaviour
         else {
             renderer.color = Color.red;
             Invoke("hitTimeOut", 0.03f);
+
+            //increase boss difficulty
+            if (health / maxHealth < .25) {
+                speed = 60;
+                cooldown = 2.66f;
+            } else if (health / maxHealth < .5) {
+                speed = 40;
+                cooldown = 4.33f;
+            }
         }
     }
 
