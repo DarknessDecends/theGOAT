@@ -46,20 +46,19 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Camera2DFollow.cs" />
-     <Compile Include="Assets\Scripts\Clock.cs" />
      <Compile Include="Assets\Scripts\EnemyController.cs" />
-     <Compile Include="Assets\Scripts\Friendly Projectiles\Arrow.cs" />
-     <Compile Include="Assets\Scripts\Friendly Projectiles\Bow.cs" />
-     <Compile Include="Assets\Scripts\Friendly Projectiles\MagicShot.cs" />
-     <Compile Include="Assets\Scripts\Friendly Projectiles\Staff.cs" />
-     <Compile Include="Assets\Scripts\Health.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
-     <Compile Include="Assets\Scripts\Mele.cs" />
      <Compile Include="Assets\Scripts\MusicManager.cs" />
-     <Compile Include="Assets\Scripts\Pickup Scripts\WeaponPickup.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
-     <Compile Include="Assets\Scripts\ScoreKeeper.cs" />
-     <Compile Include="Assets\Scripts\Weapon.cs" />
+     <Compile Include="Assets\Scripts\UI\Clock.cs" />
+     <Compile Include="Assets\Scripts\UI\Health.cs" />
+     <Compile Include="Assets\Scripts\UI\ScoreKeeper.cs" />
+     <Compile Include="Assets\Scripts\WeaponPickup.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Melee.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Projectile.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Ranged.cs" />
+     <Compile Include="Assets\Scripts\Weapons\WaterStaff.cs" />
+     <Compile Include="Assets\Scripts\Weapons\Weapon.cs" />
      <Compile Include="Assets\TileMapEditor\Scripts\Bug.cs" />
      <Compile Include="Assets\TileMapEditor\Scripts\TileBrush.cs" />
      <Compile Include="Assets\TileMapEditor\Scripts\TileManager.cs" />
