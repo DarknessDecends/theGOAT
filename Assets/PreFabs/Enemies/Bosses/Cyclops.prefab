@@ -103,8 +103,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd353706faef6014b96ca4438fb498c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 50000
-  maxHealth: 50000
+  health: 25000
+  maxHealth: 25000
   speed: 20
   scoreWorth: 10000
   topTouchDamage: 100

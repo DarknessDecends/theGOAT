@@ -14,6 +14,7 @@ GameObject:
   - 60: {fileID: 6045622}
   - 198: {fileID: 19822282}
   - 199: {fileID: 19978202}
+  - 95: {fileID: 9550568}
   m_Layer: 11
   m_Name: Zombie
   m_TagString: Untagged
@@ -70,6 +71,23 @@ PolygonCollider2D:
       - {x: 0.24139595, y: 0.0074596405}
       - {x: 0.24139786, y: 0.15308952}
       - {x: 0.003950119, y: 0.5}
+--- !u!95 &9550568
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 190454}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8775a01f8b7e36343be76c103c7527bb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &11408444
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1706,6 +1724,10 @@ Prefab:
       propertyPath: health
       value: 1800
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: 8775a01f8b7e36343be76c103c7527bb, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 190454}

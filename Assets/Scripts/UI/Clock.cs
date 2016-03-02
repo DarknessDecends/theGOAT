@@ -35,6 +35,6 @@ public class Clock : MonoBehaviour {
 	}
 
     public void convertToScore() {
-      time = ((int)(player.getScore()/100));
+      time = ((int)(player.getScore()/1000));
     }
 }

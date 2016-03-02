@@ -59,8 +59,8 @@ public class EnemyController : MonoBehaviour {
 					velocity += Vector2.up * -verticalMovement * speed * Time.deltaTime;
 					this.rigidBody.velocity = velocity; //set new velocity
 
-					//play slither animation if moving
-					//animator.SetBool("moving", rigidBody.velocity != Vector2.zero);
+					//play moving animation if moving
+					//animator.SetBool("moving", this.rigidBody.velocity != Vector2.zero);
 				}
 				if (this.rigidBody.velocity.x < 0) { //if their going left face left if their going right face right
 					transform.rotation = Quaternion.Euler(0, 180, 0);
