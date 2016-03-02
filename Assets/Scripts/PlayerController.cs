@@ -9,6 +9,7 @@ public class PlayerController : MonoBehaviour {
 	public List<Weapon> weapons;
 	public float health;
 	public int score = 0;
+    public int deaths = 0;
 
 	private bool recentHit;
 	private new SpriteRenderer renderer;
@@ -84,6 +85,7 @@ public class PlayerController : MonoBehaviour {
 
 	public void hurt(float damage) {
 		if (health - damage <= 0) {
+            deaths++;
 			levelManager.LoadLevel("Death");
 		} else {
 			health -= damage;

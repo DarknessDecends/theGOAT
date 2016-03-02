@@ -83,7 +83,7 @@ public class BossController : MonoBehaviour
                 this.rigidBody.velocity = dir.normalized * speed * 4 * Time.deltaTime;
             }
             //if distance between x's is greater than distance between y's
-            if (Mathf.Abs((this.transform.position.x - player.position.x)) > Mathf.Abs((this.transform.position.y - player.position.y))) {
+            if ((Mathf.Abs((this.transform.position.x - player.position.x)) > Mathf.Abs((this.transform.position.y - player.position.y))) && detected) {
                 animator.SetBool("isHorizontal", true);
                 animator.SetBool("isUp", false);
                 animator.SetBool("isDown", false);
@@ -95,7 +95,7 @@ public class BossController : MonoBehaviour
                    transform.rotation = Quaternion.Euler(0, 0, 0);
                 }
 
-            } else {
+            } else if ((Mathf.Abs((this.transform.position.x - player.position.x)) < Mathf.Abs((this.transform.position.y - player.position.y))) && detected) {
                 if (this.transform.position.y < player.position.y)
                 {
                     animator.SetBool("isHorizontal", false);

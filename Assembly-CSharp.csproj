@@ -48,12 +48,14 @@
      <Compile Include="Assets\Scripts\BatsController.cs" />
      <Compile Include="Assets\Scripts\BossController.cs" />
      <Compile Include="Assets\Scripts\Camera2DFollow.cs" />
+     <Compile Include="Assets\Scripts\Door.cs" />
      <Compile Include="Assets\Scripts\EnemyController.cs" />
      <Compile Include="Assets\Scripts\LevelManager.cs" />
      <Compile Include="Assets\Scripts\MusicManager.cs" />
      <Compile Include="Assets\Scripts\PlayerController.cs" />
      <Compile Include="Assets\Scripts\UI\BossHealthMeter.cs" />
      <Compile Include="Assets\Scripts\UI\Clock.cs" />
+     <Compile Include="Assets\Scripts\UI\Deaths.cs" />
      <Compile Include="Assets\Scripts\UI\Health.cs" />
      <Compile Include="Assets\Scripts\UI\ScoreKeeper.cs" />
      <Compile Include="Assets\Scripts\WeaponPickup.cs" />
