@@ -109,7 +109,7 @@ MonoBehaviour:
   scoreWorth: 10000
   topTouchDamage: 100
   bottomTouchDamage: 80
-  eyeDamage: 25
+  eyeDamage: 75
   cooldown: 6
   touchKnockback: 1
   roomCoords: 0800000013000000060000000f000000
