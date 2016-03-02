@@ -114,7 +114,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 480998}
   - 212: {fileID: 21262546}
-  - 114: {fileID: 11401452}
+  - 114: {fileID: 11462302}
   m_Layer: 0
   m_Name: Water Staff
   m_TagString: Untagged
@@ -281,7 +281,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 186982}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 13.48, y: -33.49, z: -3}
+  m_LocalPosition: {x: 13.5, y: -33.5, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 422568}
@@ -317,7 +317,7 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
   m_IsKinematic: 0
   m_Interpolate: 0
@@ -372,7 +372,7 @@ PolygonCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   m_Points:
@@ -437,21 +437,6 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11401452
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154752}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a2935d950482a04dad5713607fd65c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 20
-  cooldown: 0.5
-  speed: 23
-  projectilePrefab: {fileID: 101434, guid: 94b950fd9f526974a855ce6df8e6aa3d, type: 2}
 --- !u!114 &11403338
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -527,7 +512,7 @@ MonoBehaviour:
   maxHealth: 300
   weapons: []
   health: 250
-  score: 0
+  score: 500
 --- !u!114 &11436776
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -573,6 +558,21 @@ MonoBehaviour:
   cooldown: 1
   speed: 30
   projectilePrefab: {fileID: 164218, guid: cf9c878bc9f30a045b9719dd680e961a, type: 2}
+--- !u!114 &11462302
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 154752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba313b131852f0346b124188ae39c9e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 20
+  cooldown: 0.5
+  speed: 23
+  projectilePrefab: {fileID: 101434, guid: 94b950fd9f526974a855ce6df8e6aa3d, type: 2}
 --- !u!114 &11479696
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -909,7 +909,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_AngularDrag
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 186982}

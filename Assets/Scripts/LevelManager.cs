@@ -20,7 +20,7 @@ public class LevelManager : MonoBehaviour {
     public void resetLevel() {
 
         //Death Score Deduction
-        player.Score(-5);
+        player.Score(-500);
 
         //resets his health upon restart
         GameObject.FindObjectOfType<PlayerController>().health = GameObject.FindObjectOfType<PlayerController>().maxHealth;
@@ -34,7 +34,7 @@ public class LevelManager : MonoBehaviour {
         //Sets the timer back to full
         GameObject.FindObjectOfType<Clock>().time = GameObject.FindObjectOfType<Clock>().totalTime*60f;
     }
-
+    
     public void hardReset() {
         Destroy(player.gameObject);
         LoadLevel("Start Screen");

@@ -8,6 +8,7 @@ TagManager:
   - Floor
   - Solid
   - FakeWallStart
+  - FakewallRightSide
   layers:
   - Default
   - TransparentFX
@@ -50,4 +51,13 @@ TagManager:
     locked: 0
   - name: Weapon
     uniqueID: 179867337
+    locked: 0
+  - name: Enemies
+    uniqueID: 1760553155
+    locked: 0
+  - name: FakeWalls
+    uniqueID: 883698851
+    locked: 0
+  - name: UI
+    uniqueID: 1597952527
     locked: 0

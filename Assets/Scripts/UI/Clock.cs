@@ -11,12 +11,14 @@ public class Clock : MonoBehaviour {
 	private const int musicBPM = 88; //Beats Per Minute
 	private Text text;
 	private LevelManager levelManager;
+    private PlayerController player;
 	
 
 	// Use this for initialization
 	void Start () {
 		levelManager = GameObject.FindObjectOfType<LevelManager>();
-		time = 60f * totalTime; //60 seconds per minute
+        player = GameObject.FindObjectOfType<PlayerController>();
+        time = 60f * totalTime; //60 seconds per minute
 		text = GetComponent<Text>();
 	}
 	
@@ -31,4 +33,8 @@ public class Clock : MonoBehaviour {
 		}
 		text.text = String.Format("{0:0}:{1:00}", Mathf.Floor(time/60), time % 60);
 	}
+
+    public void convertToScore() {
+      time = ((int)(player.getScore()/100));
+    }
 }
