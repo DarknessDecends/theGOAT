@@ -12,9 +12,9 @@ GameObject:
   - 114: {fileID: 11408444}
   - 50: {fileID: 5023480}
   - 60: {fileID: 6045622}
-  - 95: {fileID: 9518892}
+  - 95: {fileID: 9591826}
   m_Layer: 11
-  m_Name: Zombie
+  m_Name: Zombie T2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -69,7 +69,7 @@ PolygonCollider2D:
       - {x: 0.24139595, y: 0.0074596405}
       - {x: 0.24139786, y: 0.15308952}
       - {x: 0.003950119, y: 0.5}
---- !u!95 &9518892
+--- !u!95 &9591826
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf628e42eda2044484ca411c32e2bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1000
+  health: 800
   speed: 40
   scoreWorth: 300
   movementChangeTime: 30
@@ -176,11 +176,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Name
-      value: Zombie T3
+      value: Zombie T2
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: health
-      value: 1000
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Controller

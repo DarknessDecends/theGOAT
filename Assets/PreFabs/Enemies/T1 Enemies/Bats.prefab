@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf628e42eda2044484ca411c32e2bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 200
+  health: 100
   speed: 100
   scoreWorth: 50
   movementChangeTime: 50
@@ -164,6 +164,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0b2b7fa627308c14cad8ed6d76584cb2, type: 2}
+    - target: {fileID: 0}
+      propertyPath: health
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 129662}

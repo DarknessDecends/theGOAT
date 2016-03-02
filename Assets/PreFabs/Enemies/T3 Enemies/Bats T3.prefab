@@ -1,44 +1,44 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &190454
+--- !u!1 &129662
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 4
   m_Component:
-  - 4: {fileID: 423584}
-  - 212: {fileID: 21263320}
-  - 114: {fileID: 11408444}
-  - 50: {fileID: 5023480}
-  - 60: {fileID: 6045622}
-  - 95: {fileID: 9587532}
+  - 4: {fileID: 414610}
+  - 212: {fileID: 21266588}
+  - 114: {fileID: 11484432}
+  - 50: {fileID: 5071710}
+  - 61: {fileID: 6150520}
+  - 95: {fileID: 9581438}
   m_Layer: 11
-  m_Name: Zombie
+  m_Name: Bats T3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &423584
+--- !u!4 &414610
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190454}
+  m_GameObject: {fileID: 129662}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 22.36, y: -23.97, z: 1.3671875}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
+  m_LocalPosition: {x: 21.72, y: -28.7, z: -1.6328125}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
---- !u!50 &5023480
+--- !u!50 &5071710
 Rigidbody2D:
   serializedVersion: 2
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190454}
+  m_GameObject: {fileID: 129662}
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 0
@@ -49,36 +49,30 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!60 &6045622
-PolygonCollider2D:
+--- !u!61 &6150520
+BoxCollider2D:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190454}
+  m_GameObject: {fileID: 129662}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0}
-  m_Points:
-    m_Paths:
-    - - {x: -0.26272774, y: 0.4928894}
-      - {x: -0.25561714, y: -0.5}
-      - {x: 0.046785355, y: -0.5071106}
-      - {x: 0.24139595, y: 0.0074596405}
-      - {x: 0.24139786, y: 0.15308952}
-      - {x: 0.003950119, y: 0.5}
---- !u!95 &9587532
+  m_Offset: {x: 0.015554428, y: -0.0077781677}
+  serializedVersion: 2
+  m_Size: {x: 0.9066788, y: 0.7355913}
+--- !u!95 &9581438
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190454}
+  m_GameObject: {fileID: 129662}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8775a01f8b7e36343be76c103c7527bb, type: 2}
+  m_Controller: {fileID: 9100000, guid: 0b2b7fa627308c14cad8ed6d76584cb2, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -86,31 +80,31 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11408444
+--- !u!114 &11484432
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190454}
+  m_GameObject: {fileID: 129662}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9cf628e42eda2044484ca411c32e2bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 1200
-  speed: 40
-  scoreWorth: 300
-  movementChangeTime: 30
-  detectionRange: 14
-  topDamage: 150
-  bottomDamage: 110
+  health: 600
+  speed: 100
+  scoreWorth: 100
+  movementChangeTime: 50
+  detectionRange: 8
+  topDamage: 50
+  bottomDamage: 30
   knockback: 1
---- !u!212 &21263320
+--- !u!212 &21266588
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 190454}
+  m_GameObject: {fileID: 129662}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -131,7 +125,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 55fcdaba4fffae24a8986f2805b09e07, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 6b3575e4bf2e0b347bb0b7024f7cd2d7, type: 3}
   m_Color: {r: 0.97647065, g: 0.97647065, b: 0.97647065, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -148,15 +142,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: detectionRange
-      value: 14
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalScale.x
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 0}
-      propertyPath: m_LocalScale.y
-      value: 1.5
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: knockback
@@ -164,7 +150,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: scoreWorth
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_GravityScale
@@ -176,17 +162,17 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Name
-      value: Zombie T4
+      value: Bats T4
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: health
-      value: 1200
+      value: 600
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Controller
       value: 
-      objectReference: {fileID: 9100000, guid: 8775a01f8b7e36343be76c103c7527bb, type: 2}
+      objectReference: {fileID: 9100000, guid: 0b2b7fa627308c14cad8ed6d76584cb2, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 190454}
+  m_RootGameObject: {fileID: 129662}
   m_IsPrefabParent: 1

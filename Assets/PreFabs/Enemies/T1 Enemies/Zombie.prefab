@@ -97,7 +97,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf628e42eda2044484ca411c32e2bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 600
+  health: 400
   speed: 40
   scoreWorth: 200
   movementChangeTime: 30
@@ -176,7 +176,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: health
-      value: 600
+      value: 400
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Controller

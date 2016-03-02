@@ -12,9 +12,9 @@ GameObject:
   - 114: {fileID: 11484432}
   - 50: {fileID: 5071710}
   - 61: {fileID: 6150520}
-  - 95: {fileID: 9581438}
+  - 95: {fileID: 9538210}
   m_Layer: 11
-  m_Name: Bats
+  m_Name: Bats T4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ BoxCollider2D:
   m_Offset: {x: 0.015554428, y: -0.0077781677}
   serializedVersion: 2
   m_Size: {x: 0.9066788, y: 0.7355913}
---- !u!95 &9581438
+--- !u!95 &9538210
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -91,7 +91,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cf628e42eda2044484ca411c32e2bb1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 600
+  health: 800
   speed: 100
   scoreWorth: 100
   movementChangeTime: 50
@@ -166,7 +166,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: health
-      value: 600
+      value: 800
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: m_Controller
