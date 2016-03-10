@@ -9,7 +9,7 @@ public class Projectile : MonoBehaviour {
     public Sprite boltExplosion;
 
     void OnTriggerEnter2D(Collider2D collider){
-        if (collider.gameObject.layer == LayerMask.NameToLayer("Wall")) {
+        if (collider.gameObject.layer == LayerMask.NameToLayer("Wall") && !collider.isTrigger) {
             GetComponent<SpriteRenderer>().sprite = boltExplosion;
             GetComponent<Rigidbody2D>().velocity = (new Vector2(0, 0));
             Invoke("selfDestroy", 0.25f);
