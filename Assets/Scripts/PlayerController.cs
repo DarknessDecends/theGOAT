@@ -9,8 +9,9 @@ public class PlayerController : MonoBehaviour {
 	public List<Weapon> weapons;
 	public float health;
 	public int score = 0;
-    public int deaths = 0;
+	public int deaths = 0;
 
+	private Vector2 movementVector;
 	private bool recentHit;
 	private new SpriteRenderer renderer;
 	private Rigidbody2D rigidBody;
@@ -42,20 +43,20 @@ public class PlayerController : MonoBehaviour {
 	void Update () {
 		if (recentHit == false) {
 			//arrowkeys change velocity
-			Vector2 velocity = Vector2.zero;
+			movementVector = Vector2.zero;
 			if (Input.GetKey("up") || Input.GetKey("w")) {
-				velocity += Vector2.up;
+				movementVector += Vector2.up;
 			}
 			if (Input.GetKey("down") || Input.GetKey("s")) {
-				velocity += Vector2.down;
+				movementVector += Vector2.down;
 			}
 			if (Input.GetKey("left") || Input.GetKey("a")) {
-				velocity += Vector2.left;
+				movementVector += Vector2.left;
 			}
 			if (Input.GetKey("right") || Input.GetKey("d")) {
-				velocity += Vector2.right;
+				movementVector += Vector2.right;
 			}
-			rigidBody.velocity = velocity.normalized*speed*Time.deltaTime;
+			rigidBody.velocity = movementVector.normalized*speed;
 		}
 		//play walk animation if moving
 		animator.SetBool("moving", rigidBody.velocity != Vector2.zero);
@@ -83,9 +84,13 @@ public class PlayerController : MonoBehaviour {
 		} //end if
 	} //end update
 
+	void FixedUpdate() {
+
+	}
+
 	public void hurt(float damage) {
 		if (health - damage <= 0) {
-            deaths++;
+			deaths++;
 			levelManager.LoadLevel("Death");
 		} else {
 			health -= damage;
