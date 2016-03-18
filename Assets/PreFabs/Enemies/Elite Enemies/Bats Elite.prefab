@@ -9,12 +9,12 @@ GameObject:
   m_Component:
   - 4: {fileID: 414610}
   - 212: {fileID: 21266588}
-  - 114: {fileID: 11484432}
   - 50: {fileID: 5071710}
   - 61: {fileID: 6150520}
   - 198: {fileID: 19894836}
   - 199: {fileID: 19967072}
   - 95: {fileID: 9502516}
+  - 114: {fileID: 11426778}
   m_Layer: 11
   m_Name: Bats Elite
   m_TagString: Untagged
@@ -82,7 +82,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11484432
+--- !u!114 &11426778
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -90,12 +90,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 129662}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cf628e42eda2044484ca411c32e2bb1, type: 3}
+  m_Script: {fileID: 11500000, guid: d7ec74d423de2114795cd79682a7aa33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1400
-  speed: 100
-  scoreWorth: 100
+  speed: 4
+  scoreWorth: 0
   movementChangeTime: 50
   detectionRange: 8
   topDamage: 100
@@ -1721,6 +1721,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: bottomDamage
       value: 80
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

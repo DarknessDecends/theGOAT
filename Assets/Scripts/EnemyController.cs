@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyController : MonoBehaviour {
 	
 	public float health = 500;
-	public float speed = 500;
+	public float speed = 10;
 	public int scoreWorth;
 	public int movementChangeTime=500;
 	public int detectionRange;
@@ -12,34 +12,36 @@ public class EnemyController : MonoBehaviour {
 	public int bottomDamage;
 	public float knockback;
 
-	private Transform player;
-	private bool detected;
+	protected Transform player;
+    protected Rigidbody2D rigidBody;
+    protected Vector2 dir;
+    protected new SpriteRenderer renderer;
+
+    private bool detected;
 	private int directionchange = 0;
 	private int horizontalMovement;
 	private int verticalMovement;
-	private Rigidbody2D rigidBody;
 	private Animator animator;
-	private new SpriteRenderer renderer;
 	private bool recentHit = false;
 
-	void Start() {
-		player = PlayerController.instance.transform;
-		rigidBody = this.GetComponent<Rigidbody2D>();
-		animator = GetComponent<Animator>();
-		renderer = GetComponent<SpriteRenderer>();
-	}
+    protected void baseStart() {
+        player = PlayerController.instance.transform;
+        rigidBody = this.GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
+        renderer = GetComponent<SpriteRenderer>();
+    }
 
-	void Update () {
+	protected void baseUpdate () {
 		detected = false; //the player hasnt been found
 		if (player != null) { //if they player exists
 			if (recentHit == false) { //if the enemy hasn't recently been hit
 				if (Vector3.Distance(player.position, transform.position) <= detectionRange) { //if the enemy can see him run at him
-					Vector2 dir = player.position - transform.position;
+					dir = player.position - transform.position;
 					RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, detectionRange);
 					Debug.DrawLine(transform.position, hit.point, Color.red);
 					if (hit.transform == player) {
 						detected = true;
-						this.rigidBody.velocity = dir.normalized * speed * 4 * Time.deltaTime;
+                        attack();
 					}
 				}
 				if (!detected) {
@@ -54,10 +56,10 @@ public class EnemyController : MonoBehaviour {
 					//initial valocity 0
 					Vector2 velocity = Vector2.zero;
 					//change horizontal velocity
-					velocity += Vector2.right * horizontalMovement * speed * Time.deltaTime;
+					velocity += Vector2.right * horizontalMovement;
 					//change vertical velocity
-					velocity += Vector2.up * -verticalMovement * speed * Time.deltaTime;
-					this.rigidBody.velocity = velocity; //set new velocity
+					velocity += Vector2.up * -verticalMovement;
+					this.rigidBody.velocity = velocity.normalized * speed; //set new velocity
 
 					//play moving animation if moving
 					animator.SetBool("moving", this.rigidBody.velocity != Vector2.zero);
@@ -75,7 +77,6 @@ public class EnemyController : MonoBehaviour {
 	public void hurt(float damage) {
 		health -= damage;
 		if (health <= 0) {
-			player.GetComponentInParent<PlayerController>().Score(scoreWorth);
 			Destroy(gameObject);
 		} else {
 			recentHit = true;
@@ -84,7 +85,7 @@ public class EnemyController : MonoBehaviour {
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D collider){
+	protected void baseOnCollisionEnter2D(Collision2D collider){
 		if (detected && collider.transform == player) { //if enemy sees player an is touching him
 			PlayerController foundPlayer = collider.gameObject.GetComponent<PlayerController>(); ;
 			foundPlayer.hurt(Random.Range(bottomDamage, topDamage + 1)); //hit the player
@@ -99,9 +100,11 @@ public class EnemyController : MonoBehaviour {
 		
 	}
 
-	void hitTimeOut() {
+	protected void hitTimeOut() {
 		renderer.color = Color.white;
 		recentHit = false;
 	}
+
+    protected virtual void attack() {}
 
 }

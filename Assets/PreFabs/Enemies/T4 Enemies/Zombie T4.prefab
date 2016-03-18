@@ -9,10 +9,10 @@ GameObject:
   m_Component:
   - 4: {fileID: 423584}
   - 212: {fileID: 21263320}
-  - 114: {fileID: 11408444}
   - 50: {fileID: 5023480}
   - 60: {fileID: 6045622}
   - 95: {fileID: 9587532}
+  - 114: {fileID: 11431072}
   m_Layer: 11
   m_Name: Zombie T4
   m_TagString: Untagged
@@ -86,7 +86,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &11408444
+--- !u!114 &11431072
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -94,12 +94,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 190454}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cf628e42eda2044484ca411c32e2bb1, type: 3}
+  m_Script: {fileID: 11500000, guid: d7ec74d423de2114795cd79682a7aa33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   health: 1200
-  speed: 40
-  scoreWorth: 300
+  speed: 3
+  scoreWorth: 0
   movementChangeTime: 30
   detectionRange: 14
   topDamage: 150
@@ -186,6 +186,10 @@ Prefab:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 8775a01f8b7e36343be76c103c7527bb, type: 2}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 190454}

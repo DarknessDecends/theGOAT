@@ -508,11 +508,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 589ea8f2c845018479fd34820c8a13c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 500
+  speed: 1
   maxHealth: 300
   weapons: []
-  health: 250
+  health: 100000
   score: 0
+  deaths: 0
 --- !u!114 &11436776
 MonoBehaviour:
   m_ObjectHideFlags: 1

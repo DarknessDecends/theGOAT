@@ -13,6 +13,7 @@ GameObject:
   - 114: {fileID: 11447532}
   - 58: {fileID: 5805398}
   - 95: {fileID: 9567772}
+  - 114: {fileID: 11453116}
   m_Layer: 11
   m_Name: Worm T4
   m_TagString: Untagged
@@ -99,6 +100,28 @@ MonoBehaviour:
   topDamage: 100
   bottomDamage: 80
   knockback: 1
+--- !u!114 &11453116
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 150588}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f021d9d70eda794da88547aca6eeab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 1000
+  speed: 10
+  scoreWorth: 0
+  movementChangeTime: 40
+  detectionRange: 8
+  topDamage: 100
+  bottomDamage: 80
+  knockback: 1
+  projectileSpeed: 15
+  projectilePrefab: {fileID: 172624, guid: 674e4215ce397514ebf1193e2c4d5a3c, type: 2}
+  cooldown: 1
 --- !u!212 &21210258
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -183,6 +206,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: health
       value: 1000
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: cooldown
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
