@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 public class BossController : MonoBehaviour
 {
+	public static BossController instance;
+
 	public float health = 2500;
 	public float maxHealth = 2500;
 	public float speed = 300;
@@ -23,9 +25,18 @@ public class BossController : MonoBehaviour
 	private Animator animator;
 	private new SpriteRenderer renderer;
 	private int thrown = 0;
-	private bool timeSwitched = false; //whether or not the timer has switched to being the score yet
 
 	static int attackEnd = Animator.StringToHash("Base Layer.attackEnd");
+
+	void Awake() {
+		if (instance == null) {
+			instance = this;
+			DontDestroyOnLoad(gameObject);
+		}
+		if (instance != this) {
+			Destroy(gameObject);
+		}
+	}
 
 	// Use this for initialization
 	void Start()
@@ -50,14 +61,6 @@ public class BossController : MonoBehaviour
 			{//player is in boss area
 				detected = true;
 
-				if (timeSwitched == false){ //when boss room is entered change UI to suit if it hasn't already been switched 
-					FindObjectOfType<Clock>().convertToScore(); //set players score into time
-					FindObjectOfType<ScoreKeeper>().gameObject.SetActive(false);
-					FindObjectOfType<Canvas>().transform.GetChild(3).gameObject.SetActive(true);
-					timeSwitched = true;
-				}
-
-				
 				if (thrown == 2) {
 					this.rigidBody.velocity = atPlayer.normalized * speed * 4 * Time.deltaTime;
 				} else if (thrown == 0) {

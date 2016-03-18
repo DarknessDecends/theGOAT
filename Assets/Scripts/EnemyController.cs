@@ -92,8 +92,11 @@ public class EnemyController : MonoBehaviour {
 
 			//foundPlayer.GetComponent<Rigidbody2D>().AddForce(atPlayer, ForceMode2D.Impulse); //.velocity += atPlayer; //apply knockback
 			collider.gameObject.GetComponent<Rigidbody2D>().velocity += (GetComponent<Rigidbody2D>().velocity)*knockback; //apply knockback
-			Debug.Log(atPlayer);
+			//Debug.Log(atPlayer);
 		}
+	}
+	void OncollisionExit2D(Collision2D collider){
+		
 	}
 
 	void hitTimeOut() {

@@ -2,10 +2,15 @@
 
 public class LevelManager : MonoBehaviour {
 
-    private PlayerController player;
+	private PlayerController player;
+	private BossController boss;
+	private Clock clock;
 
     void Start() {
-        player = PlayerController.instance;
+		player = PlayerController.instance;
+		boss = GameObject.FindObjectOfType<BossController>();
+		clock = GameObject.FindObjectOfType<Clock>();
+
     }
 
     public void LoadLevel(string name){
@@ -20,10 +25,11 @@ public class LevelManager : MonoBehaviour {
     public void resetLevel() {
 
         //Death Score Deduction
-        player.Score(-500);
+		boss.health+=5000;
+		boss.maxHealth += 5000;
 
         //resets his health upon restart
-        GameObject.FindObjectOfType<PlayerController>().health = GameObject.FindObjectOfType<PlayerController>().maxHealth;
+        player.health = player.maxHealth;
 
         //Reloads the Scene
         UnityEngine.SceneManagement.SceneManager.LoadScene("Level 1");
@@ -32,7 +38,9 @@ public class LevelManager : MonoBehaviour {
         GameObject.FindObjectOfType<PlayerController>().transform.position = new Vector3(13.5f, -33.5f, -3);
 
         //Sets the timer back to full
-        GameObject.FindObjectOfType<Clock>().time = GameObject.FindObjectOfType<Clock>().totalTime*60f;
+		if (clock != null) {
+			clock.time = clock.totalTime * 60f;
+		}
     }
     
     public void hardReset() {
