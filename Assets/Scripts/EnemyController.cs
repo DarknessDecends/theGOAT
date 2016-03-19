@@ -13,23 +13,23 @@ public class EnemyController : MonoBehaviour {
 	public float knockback;
 
 	protected Transform player;
-    protected Rigidbody2D rigidBody;
-    protected Vector2 dir;
-    protected new SpriteRenderer renderer;
+	protected Rigidbody2D rigidBody;
+	protected Vector2 dir;
+	protected new SpriteRenderer renderer;
 
-    private bool detected;
+	private bool detected;
 	private int directionchange = 0;
 	private int horizontalMovement;
 	private int verticalMovement;
 	private Animator animator;
 	private bool recentHit = false;
 
-    protected void baseStart() {
-        player = PlayerController.instance.transform;
-        rigidBody = this.GetComponent<Rigidbody2D>();
-        animator = GetComponent<Animator>();
-        renderer = GetComponent<SpriteRenderer>();
-    }
+	protected void baseStart() {
+		player = PlayerController.instance.transform;
+		rigidBody = this.GetComponent<Rigidbody2D>();
+		animator = GetComponent<Animator>();
+		renderer = GetComponent<SpriteRenderer>();
+	}
 
 	protected void baseUpdate () {
 		detected = false; //the player hasnt been found
@@ -41,7 +41,7 @@ public class EnemyController : MonoBehaviour {
 					Debug.DrawLine(transform.position, hit.point, Color.red);
 					if (hit.transform == player) {
 						detected = true;
-                        attack();
+						attack();
 					}
 				}
 				if (!detected) {
@@ -105,6 +105,6 @@ public class EnemyController : MonoBehaviour {
 		recentHit = false;
 	}
 
-    protected virtual void attack() {}
+	protected virtual void attack() {}
 
 }

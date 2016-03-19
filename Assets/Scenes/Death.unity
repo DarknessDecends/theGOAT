@@ -160,8 +160,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1957890107}
-        m_MethodName: resetLevel
+      - m_Target: {fileID: 11500000, guid: 25e1fffb7c6941549a24dc0e0660924b, type: 3}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -420,8 +420,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1957890107}
-        m_MethodName: hardReset
+      - m_Target: {fileID: 11500000, guid: 25e1fffb7c6941549a24dc0e0660924b, type: 3}
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -872,6 +872,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e1fffb7c6941549a24dc0e0660924b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highestUpgrade: 0
+  deaths: 0
 --- !u!224 &1957890108
 RectTransform:
   m_ObjectHideFlags: 0

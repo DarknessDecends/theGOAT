@@ -6,9 +6,10 @@ public class PlayerController : MonoBehaviour {
 
 	public float speed;
 	public float maxHealth;
-	public List<Weapon> weapons;
+	public Weapon[] weapons;
 	public float health;
 	public int score = 0;
+	public int highestUpgrade;
 	public int deaths = 0;
 
 	private Vector2 movementVector;
@@ -35,12 +36,12 @@ public class PlayerController : MonoBehaviour {
 		this.rigidBody = GetComponent<Rigidbody2D>();
 		levelManager = GameObject.FindObjectOfType<LevelManager>();
 
-		weapons = new List<Weapon>();
+		weapons = GetComponentsInChildren<Weapon>(true);
 
 		recentHit = false;
 	}
 
-	void Update () {
+	void Update() {
 		if (recentHit == false) {
 			//arrowkeys change velocity
 			movementVector = Vector2.zero;
@@ -65,28 +66,29 @@ public class PlayerController : MonoBehaviour {
 		Vector2 mouseXY = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
 		//rotate character to face direction of mouse
-		if (mouseXY.x < transform.position.x){
+		if (mouseXY.x < transform.position.x) {
 			transform.rotation = Quaternion.Euler(0, 180, 0);
 		} //end if
-		else if (mouseXY.x > transform.position.x){
+		else if (mouseXY.x > transform.position.x) {
 			transform.rotation = Quaternion.Euler(0, 0, 0);
 		} //end else if
 
 		//left click
-		if (Input.GetMouseButton(0)) {	
+		if (Input.GetMouseButton(0)) {
 			//calculate angle btwn player & mouse
 			Quaternion angle = Quaternion.FromToRotation(Vector3.right, mouseXY - new Vector2(transform.position.x, transform.position.y));
 			if (weapons != null) {
-				for (int i = 0; i < weapons.Count; i++) {
-					weapons[i].attack(angle);
+				string debugString = "";
+				foreach (Weapon weapon in weapons) {
+					if (weapon.isActiveAndEnabled) {
+						weapon.attack(angle);
+					}
+					debugString += weapon.name + ", ";
 				} //end for
+				Debug.Log(debugString);
 			} //end if
 		} //end if
 	} //end update
-
-	void FixedUpdate() {
-
-	}
 
 	public void hurt(float damage) {
 		if (health - damage <= 0) {
@@ -97,7 +99,7 @@ public class PlayerController : MonoBehaviour {
 			recentHit = true;
 			renderer.color = Color.red;
 			Invoke("hitTimeOut", 0.03f);
-			
+
 		}
 	}
 
@@ -124,62 +126,44 @@ public class PlayerController : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider) {
 		if (collider.gameObject.layer == LayerMask.NameToLayer("Pickups")) {
-			string name = collider.gameObject.name;
-			if (name == "Basic Staff Pickup") {
-				Weapon newWep = GetComponent<Weapon>();
-				if (!weapons.Contains(newWep)) {
-					weapons.Add(newWep);     //add basic Staff
-				} else {
-					GetComponent<Weapon>().cooldown /= 2;
-				}
-				Destroy(collider.gameObject);
-			} //end if
-			if (name == "SwordPickup") {
-			   weapons.Add(transform.GetChild(0).GetComponent<Weapon>()); //add sword
-			   transform.GetChild(0).gameObject.SetActive(true);
-			   Destroy(collider.gameObject);
-		   } //end if
-		   if (name == "BowPickup") {
-			   weapons.Add(transform.GetChild(1).GetComponent<Weapon>()); //add sword
-			   transform.GetChild(1).gameObject.SetActive(true);
-			   Destroy(collider.gameObject);
-		   } //end if
-		   if (name == "AirStaffPickup") {
-			   weapons.Add(transform.GetChild(2).GetComponent<Weapon>()); //add sword
-			   transform.GetChild(2).gameObject.SetActive(true);
-			   Destroy(collider.gameObject);
-		   } //end if
-		   if (name == "Earth Staff Pickup") {
-			   weapons.Add(transform.GetChild(3).GetComponent<Weapon>()); //add sword
-			   transform.GetChild(3).gameObject.SetActive(true);
-			   Destroy(collider.gameObject);
-		   } //end if
-		   if (name == "Water Staff Pickup") {
-			   weapons.Add(transform.GetChild(4).GetComponent<Weapon>()); //add sword
-			   transform.GetChild(4).gameObject.SetActive(true);
-			   Destroy(collider.gameObject);
-		   } //end if
-		   if (name == "Fire Staff Pickup") {
-			   weapons.Add(transform.GetChild(5).GetComponent<Weapon>()); //add sword
-			   transform.GetChild(5).gameObject.SetActive(true);
-			   Destroy(collider.gameObject);
-		   } //end if
-		   if (name == "Battle Axe Pickup") {
-			   weapons.Add(transform.GetChild(6).GetComponent<Weapon>()); //add sword
-			   transform.GetChild(6).gameObject.SetActive(true);
-			   Destroy(collider.gameObject);
-		   } //end if
-		   if (name == "Mace Pickup") {
-			   weapons.Add(transform.GetChild(7).GetComponent<Weapon>()); //add sword
-			   transform.GetChild(7).gameObject.SetActive(true);
-			   Destroy(collider.gameObject);
-		   } //end if
-		   if (name == "Club Pickup") {
-			   weapons.Add(transform.GetChild(8).GetComponent<Weapon>()); //add sword
-			   transform.GetChild(8).gameObject.SetActive(true);
-			   Destroy(collider.gameObject);
-		   } //end if
+			int childnum = -1;
+			switch (collider.gameObject.name) {
+				case "SwordPickup":
+					childnum = 0;
+					break;
+				case "BowPickup":
+					childnum = 1;
+					break;
+				case "AirStaffPickup":
+					childnum = 2;
+					break;
+				case "Earth Staff Pickup":
+					childnum = 3;
+					break;
+				case "Water Staff Pickup":
+					childnum = 4;
+					break;
+				case "Fire Staff Pickup":
+					childnum = 5;
+					break;
+				case "Battle Axe Pickup":
+					childnum = 6;
+					break;
+				case "Mace Pickup":
+					childnum = 7;
+					break;
+				case "Club Pickup":
+					childnum = 8;
+					break;
+				case "Basic Staff Pickup":
+					childnum = 9;
+					break;
+			}
+			Weapon child = transform.GetChild(childnum).GetComponent<Weapon>();
+			child.gameObject.SetActive(true);
+			Destroy(collider.gameObject);
 		} //end if
+
 		if (collider.gameObject.layer == LayerMask.NameToLayer("FakeWall")) {
 			string tag = collider.gameObject.tag;
 			var objects = GameObject.FindGameObjectsWithTag(tag);
