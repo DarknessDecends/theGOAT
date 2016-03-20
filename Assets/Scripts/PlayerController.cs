@@ -1,22 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class PlayerController : MonoBehaviour {
-	public static PlayerController instance;
+public class PlayerController : Actor {
+	static public PlayerController instance;
 
-	public float speed;
 	public float maxHealth;
 	public Weapon[] weapons;
-	public float health;
 	public int score = 0;
 	public int highestUpgrade;
 	public int deaths = 0;
 
 	private Vector2 movementVector;
-	private bool recentHit;
-	private new SpriteRenderer renderer;
-	private Rigidbody2D rigidBody;
-	private Animator animator;
 	private LevelManager levelManager;
 
 	void Awake() {
@@ -33,7 +27,7 @@ public class PlayerController : MonoBehaviour {
 		health = maxHealth;
 		this.renderer = GetComponent<SpriteRenderer>();
 		this.animator = GetComponent<Animator>();
-		this.rigidBody = GetComponent<Rigidbody2D>();
+		this.rigidbody = GetComponent<Rigidbody2D>();
 		levelManager = GameObject.FindObjectOfType<LevelManager>();
 
 		weapons = GetComponentsInChildren<Weapon>(true);
@@ -57,10 +51,10 @@ public class PlayerController : MonoBehaviour {
 			if (Input.GetKey("right") || Input.GetKey("d")) {
 				movementVector += Vector2.right;
 			}
-			rigidBody.velocity = movementVector.normalized*speed;
+			rigidbody.velocity = movementVector.normalized*speed;
 		}
 		//play walk animation if moving
-		animator.SetBool("moving", rigidBody.velocity != Vector2.zero);
+		animator.SetBool("moving", rigidbody.velocity != Vector2.zero);
 
 		//get mouse XY
 		Vector2 mouseXY = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -90,12 +84,13 @@ public class PlayerController : MonoBehaviour {
 		} //end if
 	} //end update
 
-	public void hurt(float damage) {
+	override public void hurt(float damage, Vector2 direction, float knockback) {
 		if (health - damage <= 0) {
 			deaths++;
 			levelManager.LoadLevel("Death");
 		} else {
 			health -= damage;
+			rigidbody.velocity += direction.normalized * knockback;
 			recentHit = true;
 			renderer.color = Color.red;
 			Invoke("hitTimeOut", 0.03f);
@@ -103,7 +98,7 @@ public class PlayerController : MonoBehaviour {
 		}
 	}
 
-	void hitTimeOut() {
+	override protected void hitTimeOut() {
 		renderer.color = Color.white;
 		recentHit = false;
 	}
@@ -161,6 +156,7 @@ public class PlayerController : MonoBehaviour {
 			}
 			Weapon child = transform.GetChild(childnum).GetComponent<Weapon>();
 			child.gameObject.SetActive(true);
+			child.level++;
 			Destroy(collider.gameObject);
 		} //end if
 

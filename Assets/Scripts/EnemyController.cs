@@ -1,32 +1,29 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnemyController : MonoBehaviour {
+public class EnemyController : Actor {
 	
-	public float health = 500;
-	public float speed = 10;
 	public int scoreWorth;
 	public int movementChangeTime=500;
 	public int detectionRange;
 	public int topDamage;
 	public int bottomDamage;
-	public float knockback;
+	public float knockbackDealt;
+	public float knockbackRecieved;
 
-	protected Transform player;
-	protected Rigidbody2D rigidBody;
+	protected PlayerController player;
 	protected Vector2 dir;
-	protected new SpriteRenderer renderer;
+
 
 	private bool detected;
 	private int directionchange = 0;
 	private int horizontalMovement;
 	private int verticalMovement;
-	private Animator animator;
-	private bool recentHit = false;
 
 	protected void baseStart() {
-		player = PlayerController.instance.transform;
-		rigidBody = this.GetComponent<Rigidbody2D>();
+		player = PlayerController.instance;
+		knockbackRecieved = player.highestUpgrade;
+		rigidbody = this.GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		renderer = GetComponent<SpriteRenderer>();
 	}
@@ -35,11 +32,11 @@ public class EnemyController : MonoBehaviour {
 		detected = false; //the player hasnt been found
 		if (player != null) { //if they player exists
 			if (recentHit == false) { //if the enemy hasn't recently been hit
-				if (Vector3.Distance(player.position, transform.position) <= detectionRange) { //if the enemy can see him run at him
-					dir = player.position - transform.position;
+				if (Vector3.Distance(player.transform.position, transform.position) <= detectionRange) { //if the enemy can see him run at him
+					dir = player.transform.position - transform.position;
 					RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, detectionRange);
 					Debug.DrawLine(transform.position, hit.point, Color.red);
-					if (hit.transform == player) {
+					if (hit.transform == player.transform) {
 						detected = true;
 						attack();
 					}
@@ -59,12 +56,12 @@ public class EnemyController : MonoBehaviour {
 					velocity += Vector2.right * horizontalMovement;
 					//change vertical velocity
 					velocity += Vector2.up * -verticalMovement;
-					this.rigidBody.velocity = velocity.normalized * speed; //set new velocity
+					this.rigidbody.velocity = velocity.normalized * speed; //set new velocity
 
 					//play moving animation if moving
-					animator.SetBool("moving", this.rigidBody.velocity != Vector2.zero);
+					animator.SetBool("moving", this.rigidbody.velocity != Vector2.zero);
 				}
-				if (this.rigidBody.velocity.x < 0) { //if their going left face left if their going right face right
+				if (this.rigidbody.velocity.x < 0) { //if their going left face left if their going right face right
 					transform.rotation = Quaternion.Euler(0, 180, 0);
 				} else {
 					transform.rotation = Quaternion.Euler(0, 0, 0);
@@ -73,12 +70,14 @@ public class EnemyController : MonoBehaviour {
 			}
 		}
 	}
-	
-	public void hurt(float damage) {
+
+	public override void hurt(float damage, Vector2 direction, float knockback) {
 		health -= damage;
 		if (health <= 0) {
 			Destroy(gameObject);
 		} else {
+			rigidbody.velocity += direction.normalized * knockback;
+
 			recentHit = true;
 			renderer.color = Color.red;
 			Invoke("hitTimeOut", 0.03f);
@@ -86,21 +85,15 @@ public class EnemyController : MonoBehaviour {
 	}
 
 	protected void baseOnCollisionEnter2D(Collision2D collider){
-		if (detected && collider.transform == player) { //if enemy sees player an is touching him
-			PlayerController foundPlayer = collider.gameObject.GetComponent<PlayerController>(); ;
-			foundPlayer.hurt(Random.Range(bottomDamage, topDamage + 1)); //hit the player
-			Vector2 atPlayer = (foundPlayer.transform.position - this.transform.position).normalized*knockback;
+		if (detected && collider.transform == player.transform) { //if enemy sees player an is touching him
+			PlayerController foundPlayer = collider.gameObject.GetComponent<PlayerController>();
 
-			//foundPlayer.GetComponent<Rigidbody2D>().AddForce(atPlayer, ForceMode2D.Impulse); //.velocity += atPlayer; //apply knockback
-			collider.gameObject.GetComponent<Rigidbody2D>().velocity += (GetComponent<Rigidbody2D>().velocity)*knockback; //apply knockback
-			//Debug.Log(atPlayer);
+			Vector2 atPlayer = foundPlayer.transform.position - transform.position;
+			foundPlayer.hurt(Random.Range(bottomDamage, topDamage + 1), atPlayer, knockbackDealt); //hit the player
 		}
 	}
-	void OncollisionExit2D(Collision2D collider){
-		
-	}
 
-	protected void hitTimeOut() {
+	override protected void hitTimeOut() {
 		renderer.color = Color.white;
 		recentHit = false;
 	}

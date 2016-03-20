@@ -1,13 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 
-public class BossController : MonoBehaviour
-{
+public class BossController : Actor {
 	public static BossController instance;
 
-	public float health = 2500;
 	public float maxHealth = 2500;
-	public float speed = 300;
 	public int scoreWorth;
 	public int topTouchDamage;
 	public int bottomTouchDamage;
@@ -21,9 +18,6 @@ public class BossController : MonoBehaviour
 
 	private AnimatorStateInfo currentBaseState;
 	private Transform player;
-	private Rigidbody2D rigidBody;
-	private Animator animator;
-	private new SpriteRenderer renderer;
 	private int thrown = 0;
 
 	static int attackEnd = Animator.StringToHash("Base Layer.attackEnd");
@@ -39,20 +33,17 @@ public class BossController : MonoBehaviour
 	}
 
 	// Use this for initialization
-	void Start()
-	{
+	void Start() {
 		player = PlayerController.instance.transform;
-		rigidBody = this.GetComponent<Rigidbody2D>();
+		rigidbody = this.GetComponent<Rigidbody2D>();
 		animator = GetComponent<Animator>();
 		renderer = GetComponent<SpriteRenderer>();
 	}
 
 	// Update is called once per frame
-	void Update()
-	{
+	void Update() {
 		detected = false;
-		if (player != null)
-		{ //if they player exists
+		if (player != null) { //if they player exists
 			Vector2 atPlayer = player.position - transform.position; //vector from boss to player
 			if (player.position.x > roomCoords[0] && //roomCoords[0] is left x coord
 				player.position.x < roomCoords[1] && //roomCoords[0] is right x coord
@@ -62,9 +53,9 @@ public class BossController : MonoBehaviour
 				detected = true;
 
 				if (thrown == 2) {
-					this.rigidBody.velocity = atPlayer.normalized * speed * 4 * Time.deltaTime;
+					this.rigidbody.velocity = atPlayer.normalized * speed * 4 * Time.deltaTime;
 				} else if (thrown == 0) {
-					this.rigidBody.velocity = Vector2.zero; ;
+					this.rigidbody.velocity = Vector2.zero; ;
 					animator.SetBool("throw", true);
 					thrown = 1;
 					Invoke("thrownTimeOut", cooldown);
@@ -80,9 +71,9 @@ public class BossController : MonoBehaviour
 				health = maxHealth;
 				int roundx = Mathf.FloorToInt(resetPoint.x - transform.position.x);
 				int roundy = Mathf.FloorToInt(resetPoint.x - transform.position.y);
-				Vector2 dir = new Vector2(roundx,roundy);
+				Vector2 dir = new Vector2(roundx, roundy);
 
-				this.rigidBody.velocity = dir.normalized * speed * 4 * Time.deltaTime;
+				this.rigidbody.velocity = dir.normalized * speed * 4 * Time.deltaTime;
 			}
 			//if distance between x's is greater than distance between y's
 			if ((Mathf.Abs((this.transform.position.x - player.position.x)) > Mathf.Abs((this.transform.position.y - player.position.y))) && detected) {
@@ -92,19 +83,16 @@ public class BossController : MonoBehaviour
 
 				if (atPlayer.x < 0) {
 					transform.rotation = Quaternion.Euler(0, 180, 0);
-				}
-				else {
-				   transform.rotation = Quaternion.Euler(0, 0, 0);
+				} else {
+					transform.rotation = Quaternion.Euler(0, 0, 0);
 				}
 
 			} else if ((Mathf.Abs((this.transform.position.x - player.position.x)) < Mathf.Abs((this.transform.position.y - player.position.y))) && detected) {
-				if (this.transform.position.y < player.position.y)
-				{
+				if (this.transform.position.y < player.position.y) {
 					animator.SetBool("isHorizontal", false);
 					animator.SetBool("isUp", true);
 					animator.SetBool("isDown", false);
-				}
-				else {
+				} else {
 					animator.SetBool("isHorizontal", false);
 					animator.SetBool("isUp", false);
 					animator.SetBool("isDown", true);
@@ -113,15 +101,14 @@ public class BossController : MonoBehaviour
 		}
 	}
 
-	public void hurt(float damage)
-	{
+	override public void hurt(float damage, Vector2 direction, float knockback) {
 		health -= damage;
-		if (health <= 0)
-		{
+		if (health <= 0) {
 			player.GetComponentInParent<PlayerController>().Score(scoreWorth);
 			Destroy(gameObject);
-		}
-		else {
+		} else {
+			rigidbody.velocity += direction.normalized * knockback;
+
 			renderer.color = Color.red;
 			Invoke("hitTimeOut", 0.03f);
 
@@ -136,20 +123,18 @@ public class BossController : MonoBehaviour
 		}
 	}
 
-	void OnCollisionEnter2D(Collision2D collider)
-	{
-		if (detected && collider.transform == player)
-		{ //if enemy sees player an is touching him
-				PlayerController foundPlayer = collider.gameObject.GetComponent<PlayerController>(); ;
-				foundPlayer.hurt(Random.Range(bottomTouchDamage, topTouchDamage + 1)); //hit the player
-				Vector2 atPlayer = (foundPlayer.transform.position - this.transform.position).normalized * touchKnockback;
+	void OnCollisionEnter2D(Collision2D collider) {
+		if (detected && collider.transform == player) { //if enemy sees player an is touching him
+			PlayerController foundPlayer = collider.gameObject.GetComponent<PlayerController>();
 
-				foundPlayer.GetComponent<Rigidbody2D>().AddForce(atPlayer, ForceMode2D.Impulse); //.velocity += atPlayer; //apply knockback
-				Debug.Log(atPlayer);
+			Vector2 atPlayer = (foundPlayer.transform.position - this.transform.position);
+			foundPlayer.hurt(Random.Range(bottomTouchDamage, topTouchDamage + 1), atPlayer, touchKnockback); //hit the player
+
+			Debug.Log(atPlayer);
 		}
 	}
 
-	void hitTimeOut() {
+	override protected void hitTimeOut() {
 		renderer.color = Color.white;
 	}
 
@@ -163,7 +148,7 @@ public class BossController : MonoBehaviour
 		shot.transform.position = transform.position;
 		shot.transform.rotation *= angle; //add the angles (some prefabs have rotation.y == -45)
 		shot.damage = this.eyeDamage; //set damage
-								   //accelerate bullet
+									  //accelerate bullet
 		Vector2 shotVector = angle * Vector3.right * speed; //rotate "right" vector by angle
 		shot.GetComponent<Rigidbody2D>().AddForce(shotVector, ForceMode2D.Impulse);
 	}

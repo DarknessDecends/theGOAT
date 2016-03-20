@@ -17,7 +17,7 @@ public class MeleeEnemyController : EnemyController {
 
 
     protected override void attack() {
-        this.rigidBody.velocity = dir.normalized * speed* 4;
+        this.rigidbody.velocity = dir.normalized * speed* 4;
     }
 
 }

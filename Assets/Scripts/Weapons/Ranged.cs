@@ -2,7 +2,6 @@
 using System.Collections;
 
 public class Ranged : Weapon {
-
 	public int speed; //how fast the arrow travels
 	public GameObject projectilePrefab;
 

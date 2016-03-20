@@ -7,7 +7,6 @@ public class Melee : Weapon {
 	public int swingSpeed;
 	private int change;
 	private bool upSwing;
-	public float knockback;
 
 	void Start() {
 		change = 60;
@@ -34,9 +33,7 @@ public class Melee : Weapon {
 	void OnTriggerEnter2D(Collider2D collider) {
 		EnemyController enemy = collider.gameObject.GetComponent<EnemyController>();
 		if (enemy) {
-			enemy.hurt(damage);
-			Vector2 atEnemy = (enemy.transform.position - this.transform.position).normalized*knockback;
-			enemy.GetComponent<Rigidbody2D>().velocity += atEnemy; //apply knockback
+			enemy.hurt(damage, Vector2.zero, 0); //no knockback
 		}
 	}
 }
