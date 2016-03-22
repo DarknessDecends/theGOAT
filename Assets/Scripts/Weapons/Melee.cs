@@ -8,7 +8,9 @@ public class Melee : Weapon {
 	private int change;
 	private bool upSwing;
 
-	void Start() {
+	override public void activate() {
+		gameObject.SetActive(true);
+		baseStart();
 		change = 60;
 		upSwing = false;
 	}
@@ -37,5 +39,3 @@ public class Melee : Weapon {
 		}
 	}
 }
-
-	

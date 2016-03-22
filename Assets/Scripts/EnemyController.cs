@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class EnemyController : Actor {
 	
@@ -9,7 +10,6 @@ public class EnemyController : Actor {
 	public int topDamage;
 	public int bottomDamage;
 	public float knockbackDealt;
-	public float knockbackRecieved;
 
 	protected PlayerController player;
 	protected Vector2 dir;
@@ -20,12 +20,11 @@ public class EnemyController : Actor {
 	private int horizontalMovement;
 	private int verticalMovement;
 
-	protected void baseStart() {
+	override protected void baseStart() {
+		base.baseStart();
 		player = PlayerController.instance;
-		knockbackRecieved = player.highestUpgrade;
-		rigidbody = this.GetComponent<Rigidbody2D>();
-		animator = GetComponent<Animator>();
-		renderer = GetComponent<SpriteRenderer>();
+		//scale enemy knockback resistance based on player's current highest upgrade
+		knockbackResist = player.highestUpgrade;
 	}
 
 	protected void baseUpdate () {
@@ -43,8 +42,8 @@ public class EnemyController : Actor {
 				}
 				if (!detected) {
 					if (directionchange == 0) {
-						horizontalMovement = Random.Range(-1, 2);
-						verticalMovement = Random.Range(-1, 2);
+						horizontalMovement = UnityEngine.Random.Range(-1, 2);
+						verticalMovement = UnityEngine.Random.Range(-1, 2);
 						directionchange = movementChangeTime;
 					} else {
 						directionchange--;
@@ -74,7 +73,7 @@ public class EnemyController : Actor {
 	public override void hurt(float damage, Vector2 direction, float knockback) {
 		health -= damage;
 		if (health <= 0) {
-			Destroy(gameObject);
+			die();
 		} else {
 			rigidbody.velocity += direction.normalized * knockback;
 
@@ -84,18 +83,17 @@ public class EnemyController : Actor {
 		}
 	}
 
+	protected override void die() {
+		Destroy(gameObject);
+	}
+
 	protected void baseOnCollisionEnter2D(Collision2D collider){
 		if (detected && collider.transform == player.transform) { //if enemy sees player an is touching him
 			PlayerController foundPlayer = collider.gameObject.GetComponent<PlayerController>();
 
 			Vector2 atPlayer = foundPlayer.transform.position - transform.position;
-			foundPlayer.hurt(Random.Range(bottomDamage, topDamage + 1), atPlayer, knockbackDealt); //hit the player
+			foundPlayer.hurt(UnityEngine.Random.Range(bottomDamage, topDamage + 1), atPlayer, knockbackDealt); //hit the player
 		}
-	}
-
-	override protected void hitTimeOut() {
-		renderer.color = Color.white;
-		recentHit = false;
 	}
 
 	protected virtual void attack() {}

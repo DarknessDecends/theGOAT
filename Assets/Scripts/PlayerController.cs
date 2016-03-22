@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class PlayerController : Actor {
 	static public PlayerController instance;
 
 	public float maxHealth;
-	public Weapon[] weapons;
 	public int score = 0;
 	public int highestUpgrade;
 	public int deaths = 0;
 
+	private Weapon[] weapons;
 	private Vector2 movementVector;
 	private LevelManager levelManager;
 
@@ -24,15 +25,10 @@ public class PlayerController : Actor {
 	}
 
 	void Start() {
+		baseStart();
 		health = maxHealth;
-		this.renderer = GetComponent<SpriteRenderer>();
-		this.animator = GetComponent<Animator>();
-		this.rigidbody = GetComponent<Rigidbody2D>();
 		levelManager = GameObject.FindObjectOfType<LevelManager>();
-
 		weapons = GetComponentsInChildren<Weapon>(true);
-
-		recentHit = false;
 	}
 
 	void Update() {
@@ -72,35 +68,26 @@ public class PlayerController : Actor {
 			//calculate angle btwn player & mouse
 			Quaternion angle = Quaternion.FromToRotation(Vector3.right, mouseXY - new Vector2(transform.position.x, transform.position.y));
 			if (weapons != null) {
-				string debugString = "";
 				foreach (Weapon weapon in weapons) {
 					if (weapon.isActiveAndEnabled) {
 						weapon.attack(angle);
 					}
-					debugString += weapon.name + ", ";
 				} //end for
-				Debug.Log(debugString);
 			} //end if
 		} //end if
 	} //end update
 
-	override public void hurt(float damage, Vector2 direction, float knockback) {
-		if (health - damage <= 0) {
-			deaths++;
-			levelManager.LoadLevel("Death");
-		} else {
-			health -= damage;
-			rigidbody.velocity += direction.normalized * knockback;
-			recentHit = true;
-			renderer.color = Color.red;
-			Invoke("hitTimeOut", 0.03f);
-
+	protected override void die() {
+		//calculate highestUpgrade. Enemies use this to determine health & knockback
+		foreach (Weapon weapon in weapons) {
+			if (weapon.level > highestUpgrade) {
+				highestUpgrade = weapon.level;
+			}
 		}
-	}
 
-	override protected void hitTimeOut() {
-		renderer.color = Color.white;
-		recentHit = false;
+		//die
+		deaths++;
+		levelManager.LoadLevel("Death");
 	}
 
 	public int getScore() {
@@ -155,9 +142,15 @@ public class PlayerController : Actor {
 					break;
 			}
 			Weapon child = transform.GetChild(childnum).GetComponent<Weapon>();
-			child.gameObject.SetActive(true);
-			child.level++;
+			child.activate();
+			child.level++;			
+			child.cooldown = child.initialCooldown/Mathf.Pow(child.level, 2); //quadratically decrease cooldown
 			Destroy(collider.gameObject);
+			string debugString = "";
+			foreach(Weapon weapon in weapons) {
+				debugString += weapon.name+", ";
+			}
+			Debug.Log(debugString);
 		} //end if
 
 		if (collider.gameObject.layer == LayerMask.NameToLayer("FakeWall")) {

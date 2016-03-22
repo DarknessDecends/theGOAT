@@ -12,7 +12,6 @@ GameObject:
   - 198: {fileID: 19805238}
   - 199: {fileID: 19914308}
   - 60: {fileID: 6065848}
-  - 114: {fileID: 11444868}
   m_Layer: 13
   m_Name: AirStaffPickup
   m_TagString: Untagged
@@ -50,21 +49,6 @@ PolygonCollider2D:
       - {x: -0.42971694, y: -0.5124156}
       - {x: 0.45837057, y: 0.4162513}
       - {x: 0.41626695, y: 0.46719024}
---- !u!114 &11444868
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 154610}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a2935d950482a04dad5713607fd65c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 50
-  cooldown: 3
-  boltSpeed: 60
-  boltPrefab: {fileID: 157528, guid: 129356b69289cf542b8cba8f7226d8ec, type: 2}
 --- !u!198 &19805238
 ParticleSystem:
   m_ObjectHideFlags: 1

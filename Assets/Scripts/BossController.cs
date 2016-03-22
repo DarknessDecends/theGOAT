@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
+using System;
 
 public class BossController : Actor {
 	public static BossController instance;
@@ -104,8 +105,7 @@ public class BossController : Actor {
 	override public void hurt(float damage, Vector2 direction, float knockback) {
 		health -= damage;
 		if (health <= 0) {
-			player.GetComponentInParent<PlayerController>().Score(scoreWorth);
-			Destroy(gameObject);
+			die();
 		} else {
 			rigidbody.velocity += direction.normalized * knockback;
 
@@ -123,19 +123,20 @@ public class BossController : Actor {
 		}
 	}
 
+	override protected void die() {
+		player.GetComponentInParent<PlayerController>().Score(scoreWorth);
+		Destroy(gameObject);
+	}
+
 	void OnCollisionEnter2D(Collision2D collider) {
 		if (detected && collider.transform == player) { //if enemy sees player an is touching him
 			PlayerController foundPlayer = collider.gameObject.GetComponent<PlayerController>();
 
 			Vector2 atPlayer = (foundPlayer.transform.position - this.transform.position);
-			foundPlayer.hurt(Random.Range(bottomTouchDamage, topTouchDamage + 1), atPlayer, touchKnockback); //hit the player
+			foundPlayer.hurt(UnityEngine.Random.Range(bottomTouchDamage, topTouchDamage + 1), atPlayer, touchKnockback); //hit the player
 
 			Debug.Log(atPlayer);
 		}
-	}
-
-	override protected void hitTimeOut() {
-		renderer.color = Color.white;
 	}
 
 	void thrownTimeOut() {

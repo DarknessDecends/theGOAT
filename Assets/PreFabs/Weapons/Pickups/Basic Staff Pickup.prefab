@@ -12,7 +12,6 @@ GameObject:
   - 198: {fileID: 19895858}
   - 199: {fileID: 19912460}
   - 61: {fileID: 6193002}
-  - 114: {fileID: 11403268}
   m_Layer: 13
   m_Name: Basic Staff Pickup
   m_TagString: Untagged
@@ -46,21 +45,6 @@ BoxCollider2D:
   m_Offset: {x: 0.05444908, y: 0.031761408}
   serializedVersion: 2
   m_Size: {x: 0.6914589, y: 0.7186837}
---- !u!114 &11403268
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 180490}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a2935d950482a04dad5713607fd65c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 100
-  cooldown: 2
-  boltSpeed: 20
-  boltPrefab: {fileID: 170800, guid: 3c7e9a4da8c19d44988b457ef645cd85, type: 2}
 --- !u!198 &19895858
 ParticleSystem:
   m_ObjectHideFlags: 1

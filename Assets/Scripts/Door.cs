@@ -36,7 +36,6 @@ public class Door : MonoBehaviour {
 			float localY = transform.InverseTransformPoint(other.transform.position).y;
 
 			//check if other's y is above the door's y
-			Debug.Log(localY);
 			if (lockOnEnter && localY > 0) {
 				locked = true;
 			}

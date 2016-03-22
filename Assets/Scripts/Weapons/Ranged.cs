@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class Ranged : Weapon {
 	public int speed; //how fast the arrow travels
@@ -7,8 +8,9 @@ public class Ranged : Weapon {
 
 	private float cooldownTimer;
 
-	void Start()
-	{
+	public override void activate() {
+		gameObject.SetActive(true);
+		baseStart();
 		cooldownTimer = 0; //paces bow shots
 	}
 
