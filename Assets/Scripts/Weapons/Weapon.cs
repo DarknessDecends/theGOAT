@@ -10,7 +10,6 @@ public abstract class Weapon : MonoBehaviour {
 
 	protected void baseStart() {
 		initialCooldown = cooldown;
-		Debug.Log(name + ", "+cooldown);
 	}
 
 	public abstract void activate();

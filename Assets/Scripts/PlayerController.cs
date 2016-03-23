@@ -143,14 +143,9 @@ public class PlayerController : Actor {
 			}
 			Weapon child = transform.GetChild(childnum).GetComponent<Weapon>();
 			child.activate();
-			child.level++;			
+			child.level++;
 			child.cooldown = child.initialCooldown/Mathf.Pow(child.level, 2); //quadratically decrease cooldown
 			Destroy(collider.gameObject);
-			string debugString = "";
-			foreach(Weapon weapon in weapons) {
-				debugString += weapon.name+", ";
-			}
-			Debug.Log(debugString);
 		} //end if
 
 		if (collider.gameObject.layer == LayerMask.NameToLayer("FakeWall")) {

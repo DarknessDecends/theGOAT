@@ -3,7 +3,6 @@ using System.Collections;
 using System;
 
 public class EnemyController : Actor {
-	
 	public int scoreWorth;
 	public int movementChangeTime=500;
 	public int detectionRange;
@@ -14,7 +13,6 @@ public class EnemyController : Actor {
 	protected PlayerController player;
 	protected Vector2 dir;
 
-
 	private bool detected;
 	private int directionchange = 0;
 	private int horizontalMovement;
@@ -24,7 +22,9 @@ public class EnemyController : Actor {
 		base.baseStart();
 		player = PlayerController.instance;
 		//scale enemy knockback resistance based on player's current highest upgrade
-		knockbackResist = player.highestUpgrade;
+		float playerFireRate = Mathf.Pow(player.highestUpgrade, 2);
+		health += health * playerFireRate;
+		knockbackResist = player.highestUpgrade * playerFireRate;
 	}
 
 	protected void baseUpdate () {
