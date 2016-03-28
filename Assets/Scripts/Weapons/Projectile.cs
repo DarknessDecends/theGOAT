@@ -26,25 +26,29 @@ public class Projectile : MonoBehaviour {
 		OnTriggerEnter2D(collision.collider);
 	}
 	void OnTriggerEnter2D(Collider2D collider) {
+		if (rigidbody == null) {
+			return;
+		}
+
 		if (collider.gameObject.layer == LayerMask.NameToLayer("Wall") && !collider.isTrigger) {
 			this.stop();
 		} else {
 			if (collider.gameObject.GetComponent<BossController>() != null) { //if its a boss do damage to the boss
 				BossController target = collider.gameObject.GetComponent<BossController>();
 				if (target) {
-					target.hurt(damage, rigidbody.velocity, knockback);
+					target.hurt(damage, constantVelocity, knockback);
 					this.stop();
 				} //end if
 			} else if (collider.gameObject.GetComponent<EnemyController>() != null) { //if its an Enemy hurt the enemy
 				EnemyController target = collider.gameObject.GetComponent<EnemyController>();
 				if (target) {
-					target.hurt(damage, rigidbody.velocity, knockback);
+					target.hurt(damage, constantVelocity, knockback);
 					this.stop();
 				} //end if
 			} else if (collider.gameObject.GetComponent<PlayerController>() != null) { //if its The player hurt the player
 				PlayerController target = collider.gameObject.GetComponent<PlayerController>();
 				if (target) {
-					target.hurt(damage, rigidbody.velocity, knockback);
+					target.hurt(damage, constantVelocity, knockback);
 					this.stop();
 				} //end if
 			} //end if
@@ -52,7 +56,6 @@ public class Projectile : MonoBehaviour {
 	}
 
 	private void stop() {
-		rigidbody.velocity = new Vector2(0, 0);
 		Destroy(rigidbody);
 		Invoke("selfDestroy", 0.25f);
 	}
