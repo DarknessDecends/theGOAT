@@ -11,8 +11,8 @@ GameObject:
   - 212: {fileID: 21296070}
   - 61: {fileID: 6142474}
   - 114: {fileID: 11409034}
-  - 95: {fileID: 9512698}
-  m_Layer: 0
+  - 95: {fileID: 9594296}
+  m_Layer: 12
   m_Name: WoodenDoor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -42,10 +42,10 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: 0, y: 0.35}
+  m_Offset: {x: 0, y: 0.2}
   serializedVersion: 2
-  m_Size: {x: 1, y: 0.3}
---- !u!95 &9512698
+  m_Size: {x: 1, y: 0.6}
+--- !u!95 &9594296
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 1
@@ -73,8 +73,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0d3091162ef6c14085e7d8008f92787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inRoom: 0
-  lockOnEnter: 0
+  lockOnEnter: 1
 --- !u!212 &21296070
 SpriteRenderer:
   m_ObjectHideFlags: 1

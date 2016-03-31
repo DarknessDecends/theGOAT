@@ -24,7 +24,7 @@ public abstract class Actor : MonoBehaviour {
 			die();
 		} else {
 			health -= damage;
-			Debug.Log("direction: "+direction+", knockback: "+knockback+", knockback resist: "+knockbackResist);
+			//Debug.Log("direction: "+direction+", knockback: "+knockback+", knockback resist: "+knockbackResist);
 			transform.Translate((direction.normalized * knockback) / knockbackResist);
 			recentHit = true;
 			renderer.color = Color.red;

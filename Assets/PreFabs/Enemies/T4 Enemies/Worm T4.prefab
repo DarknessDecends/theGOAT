@@ -94,12 +94,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   speed: 50
+  knockbackResist: 5
   scoreWorth: 200
   movementChangeTime: 40
   detectionRange: 8
   topDamage: 100
   bottomDamage: 80
-  knockback: 1
+  knockbackDealt: 0
 --- !u!114 &11453116
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -113,14 +114,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 1000
   speed: 10
+  knockbackResist: 5
   scoreWorth: 0
   movementChangeTime: 40
   detectionRange: 8
   topDamage: 100
   bottomDamage: 80
-  knockback: 1
+  knockbackDealt: 0
   projectileSpeed: 15
-  projectilePrefab: {fileID: 172624, guid: 674e4215ce397514ebf1193e2c4d5a3c, type: 2}
+  projectilePrefab: {fileID: 118064, guid: 92677ea8e9d40fd49abebcd939ab0646, type: 2}
   cooldown: 1
 --- !u!212 &21210258
 SpriteRenderer:
@@ -211,6 +213,10 @@ Prefab:
       propertyPath: cooldown
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: projectilePrefab
+      value: 
+      objectReference: {fileID: 118064, guid: 92677ea8e9d40fd49abebcd939ab0646, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 150588}
