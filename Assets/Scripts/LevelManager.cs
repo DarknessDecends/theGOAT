@@ -25,8 +25,8 @@ public class LevelManager : MonoBehaviour {
 	public void resetLevel() {
 
 		//Death Score Deduction
-		boss.health+=5000;
-		boss.maxHealth += 5000;
+		boss.health+=50000;
+		boss.maxHealth += 50000;
 
 		//resets his health upon restart
 		player.health = player.maxHealth;

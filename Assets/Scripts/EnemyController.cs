@@ -24,11 +24,11 @@ public class EnemyController : Actor {
 
 		//scale enemy knockback resistance based on player's current highest upgrade
 		//pick 
-		float playerFireRate = Mathf.Min(Mathf.Pow(player.highestUpgrade, 2), Application.targetFrameRate);
+		float playerFireRate = Mathf.Min(Mathf.Pow(player.highestUpgrade, 2));
 
-		//scale enemy health and knockback with player fire rate
-		//framerate >= health & knockback >= 1
-		health = Mathf.Max(1, health * playerFireRate);
+        //scale enemy health and knockback with player fire rate
+        //framerate >= health & knockback >= 1
+		health = Mathf.Max(1, health * playerFireRate / 3);
 		knockbackResist = Mathf.Max(1, player.highestUpgrade * playerFireRate);
 
 		//Debug.Log("player fire rate: "+playerFireRate+", health: "+health+", knockback resist: "+knockbackResist);
