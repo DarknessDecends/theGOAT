@@ -6,7 +6,8 @@ public class BossController : Actor {
 	public static BossController instance;
 
 	public float maxHealth = 2500;
-	public int scoreWorth;
+    public int shotSpeed = 25;
+    public int scoreWorth;
 	public int topTouchDamage;
 	public int bottomTouchDamage;
 	public int eyeDamage;
@@ -20,8 +21,11 @@ public class BossController : Actor {
 	private AnimatorStateInfo currentBaseState;
 	private Transform player;
 	private int thrown = 0;
+    private bool finalfight = false;
+    private int finalcount = 99;
+    private bool charged = false;
 
-	static int attackEnd = Animator.StringToHash("Base Layer.attackEnd");
+    static int attackEnd = Animator.StringToHash("Base Layer.attackEnd");
 
 	void Awake() {
 		if (instance == null) {
@@ -54,14 +58,26 @@ public class BossController : Actor {
 				detected = true;
 
 				if (thrown == 2) {
-					this.rigidbody.velocity = atPlayer.normalized * speed * 4 * Time.deltaTime;
-				} else if (thrown == 0) {
-					this.rigidbody.velocity = Vector2.zero; ;
-					animator.SetBool("throw", true);
-					thrown = 1;
-					Invoke("thrownTimeOut", cooldown);
-				}
-				currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
+                    if (!finalfight) {
+                        this.rigidbody.velocity = atPlayer.normalized * speed;
+                    }
+                    else if (!charged) {
+                        this.rigidbody.velocity = atPlayer.normalized * speed;
+                        charged = true;
+                    }
+                } else if (thrown == 0) {
+                    this.rigidbody.velocity = Vector2.zero; ;
+                    animator.SetBool("throw", true);
+                    thrown = 1;
+                    if (finalcount == 0 && finalfight) {
+                        cooldown = 1.4f;
+                        speed = 6;
+                        finalcount = 99;
+                        charged = false;
+                    }
+                    Invoke("thrownTimeOut", cooldown);
+                }
+                currentBaseState = animator.GetCurrentAnimatorStateInfo(0);
 				if (currentBaseState.IsName("attackEnd") && thrown == 1) {
 					animator.SetBool("throw", false);
 					thrown = 2;
@@ -106,22 +122,19 @@ public class BossController : Actor {
 		health -= damage;
 		if (health <= 0) {
 			die();
-		} else {
-			rigidbody.velocity += direction.normalized * knockback;
-
-			renderer.color = Color.red;
-			Invoke("hitTimeOut", 0.03f);
-
-			//increase boss difficulty
-			if (health / maxHealth < .25) {
-				speed = 60;
-				cooldown = 2.66f;
-			} else if (health / maxHealth < .5) {
-				speed = 40;
-				cooldown = 4.33f;
-			}
-		}
-	}
+		} else if (finalfight == false) {
+            //increase boss difficulty
+            if (health / maxHealth < .25) {
+                speed = 0;
+                cooldown = 0f;
+                finalfight = true;
+            }
+            else if (health / maxHealth < .5) {
+                speed = 4;
+                cooldown = 3.5f;
+            }
+        }
+    }
 
 	override protected void die() {
 		player.GetComponentInParent<PlayerController>().Score(scoreWorth);
@@ -139,18 +152,25 @@ public class BossController : Actor {
 		}
 	}
 
-	void thrownTimeOut() {
-		thrown = 0;
-	}
+    void thrownTimeOut() {
+        thrown = 0;
+        if (finalfight == true) {
+            cooldown = 0f;
+            speed = 0;
+        }
+    }
 
-	public void attack(Quaternion angle) {
-		//make new eye
-		Projectile shot = (Instantiate(projectilePrefab) as GameObject).GetComponent<Projectile>();
+    public void attack(Quaternion angle) {
+        //make new eye
+        if (finalfight) {
+            finalcount--;
+        }
+        Projectile shot = (Instantiate(projectilePrefab) as GameObject).GetComponent<Projectile>();
 		shot.transform.position = transform.position;
 		shot.transform.rotation *= angle; //add the angles (some prefabs have rotation.y == -45)
 		shot.damage = this.eyeDamage; //set damage
 									  //accelerate bullet
-		Vector2 shotVector = angle * Vector3.right * speed; //rotate "right" vector by angle
+		Vector2 shotVector = angle * Vector3.right * shotSpeed; //rotate "right" vector by angle
 		shot.GetComponent<Rigidbody2D>().AddForce(shotVector, ForceMode2D.Impulse);
 	}
 }
